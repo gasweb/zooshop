@@ -1,0 +1,33 @@
+<?php
+return [
+    'doctrine' => [
+        'connection' => [
+            'orm_shop' => [
+                'params' => [
+                    'url' => 'mysql://%db_username%:%db_password%@%db_host%/%database%',
+                ],
+            ],
+        ],
+        'driver' => [
+            'orm_shop' => [
+                'class' => \Doctrine\Common\Persistence\Mapping\Driver\MappingDriverChain::class,
+                'drivers' => [
+                    'ZooShopDomain\Entity' => 'stock_entity',
+                ],
+            ],
+            'stock_entity' => [
+                'class' => \Doctrine\ORM\Mapping\Driver\AnnotationDriver::class,
+                'cache' => 'array',
+                'paths' => __DIR__ . '/../../src/ZooShopDomain/src/Entity',
+            ],
+        ],
+        'types' => [
+                    'brand'  => \ZooShopDomain\ValueObjects\Brand\BrandType::class,
+                ],
+        'dbal' => [
+            'mapping_types' => [
+                'enum'  => 'string',
+            ],
+        ],
+    ],
+];
