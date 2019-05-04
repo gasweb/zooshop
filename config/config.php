@@ -13,6 +13,10 @@ $cacheConfig = [
 ];
 
 $aggregator = new ConfigAggregator([
+    \Zend\Form\ConfigProvider::class,
+    \Zend\InputFilter\ConfigProvider::class,
+    \Zend\Filter\ConfigProvider::class,
+    \Zend\Hydrator\ConfigProvider::class,
     \ZooShopCatalog\ConfigProvider::class,
     \ZooShopApp\ConfigProvider::class,
     \ZooShopDomain\ConfigProvider::class,
