@@ -13,6 +13,7 @@ $cacheConfig = [
 ];
 
 $aggregator = new ConfigAggregator([
+    \Zend\I18n\ConfigProvider::class,
     \Zend\Form\ConfigProvider::class,
     \Zend\InputFilter\ConfigProvider::class,
     \Zend\Filter\ConfigProvider::class,
@@ -21,7 +22,7 @@ $aggregator = new ConfigAggregator([
     \ZooShopApp\ConfigProvider::class,
     \ZooShopDomain\ConfigProvider::class,
     \Zend\HttpHandlerRunner\ConfigProvider::class,
-    \Zend\Expressive\Twig\ConfigProvider::class,
+    \Zend\Expressive\ZendView\ConfigProvider::class,
     \Zend\Expressive\Router\ZendRouter\ConfigProvider::class,
     \Zend\Router\ConfigProvider::class,
     \Zend\Validator\ConfigProvider::class,

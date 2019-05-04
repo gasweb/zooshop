@@ -5,6 +5,7 @@ declare(strict_types=1);
 use Psr\Container\ContainerInterface;
 use Zend\Expressive\Application;
 use Zend\Expressive\MiddlewareFactory;
+use ZooShopApp\ConfigProvider;
 
 /**
  * Setup routes with a single request method:
@@ -20,4 +21,11 @@ use Zend\Expressive\MiddlewareFactory;
  * $app->route('/contact', App\Handler\ContactHandler::class, ['GET', 'POST', ...], 'contact');
  */
 return function (Application $app, MiddlewareFactory $factory, ContainerInterface $container) : void {
+    $app->get(
+        ConfigProvider::PRODUCT_CREATE['route'],
+        [
+            \ZooShopCatalog\Product\Create\Handler\Create::class
+        ],
+        ConfigProvider::PRODUCT_CREATE['alias']
+    );
 };

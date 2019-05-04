@@ -11,6 +11,11 @@ namespace ZooShopApp;
  */
 class ConfigProvider
 {
+    const PRODUCT_CREATE = [
+        'route' => '/admin/product/add',
+        'alias' => 'admin.product.add'
+    ];
+
     /**
      * Returns the configuration array
      *
@@ -46,6 +51,8 @@ class ConfigProvider
         return [
             'paths' => [
                 'zoo-shop-app'    => [__DIR__ . '/../templates/'],
+                'error'  => [__DIR__ . '/../templates/error'],
+                'layout' => [__DIR__ . '/../templates/layout'],
             ],
         ];
     }

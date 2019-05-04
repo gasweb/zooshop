@@ -4,6 +4,9 @@ declare(strict_types=1);
 
 namespace ZooShopCatalog;
 
+use ZooShopCatalog\Product\Create\Handler\Create;
+use ZooShopCatalog\Product\Create\Handler\CreateFactory;
+
 /**
  * The configuration provider for the ZooShopCatalog module
  *
@@ -34,6 +37,7 @@ class ConfigProvider
             'invokables' => [
             ],
             'factories'  => [
+                Create::class => CreateFactory::class
             ],
         ];
     }
@@ -45,7 +49,7 @@ class ConfigProvider
     {
         return [
             'paths' => [
-                'zoo-shop-catalog'    => [__DIR__ . '/../templates/'],
+                'product'    => [__DIR__ . '/../templates/product'],
             ],
         ];
     }
