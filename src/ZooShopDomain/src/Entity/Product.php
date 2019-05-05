@@ -9,6 +9,7 @@ use ZooShopDomain\ValueObjects\Title\TitleVO;
 class Product
 {
     const TITLE = 'title';
+    const CATEGORY = 'category';
 
     /** @var TitleVO $title
      *  @ORM\Column(name="title", type="title", length=100, nullable=false)
