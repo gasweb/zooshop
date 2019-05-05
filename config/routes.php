@@ -6,6 +6,8 @@ use Psr\Container\ContainerInterface;
 use Zend\Expressive\Application;
 use Zend\Expressive\MiddlewareFactory;
 use ZooShopApp\ConfigProvider;
+use ZooShopCatalog\Product\Create\Processor\CreateProductFormProcessor;
+use ZooShopCatalog\Product\Create\Handler\CreateProductFormOutput;
 
 /**
  * Setup routes with a single request method:
@@ -24,14 +26,14 @@ return function (Application $app, MiddlewareFactory $factory, ContainerInterfac
     $app->get(
         ConfigProvider::PRODUCT_CREATE['route'],
         [
-            \ZooShopCatalog\Product\Create\Handler\Create::class
+            CreateProductFormOutput::class
         ],
         ConfigProvider::PRODUCT_CREATE['alias']
     );
     $app->post(
         ConfigProvider::PRODUCT_CREATE_PROCESSOR['route'],
         [
-            \ZooShopCatalog\Product\Create\Processor\Processor::class
+            CreateProductFormProcessor::class
         ],
         ConfigProvider::PRODUCT_CREATE_PROCESSOR['alias']
     );
