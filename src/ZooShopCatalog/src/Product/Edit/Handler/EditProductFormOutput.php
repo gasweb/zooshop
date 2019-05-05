@@ -52,6 +52,5 @@ class EditProductFormOutput implements RequestHandlerInterface
         } catch (ProductNotFoundException $productNotFoundException) {
             die('404');
         }
-
     }
 }
