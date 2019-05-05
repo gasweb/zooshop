@@ -6,6 +6,8 @@ namespace ZooShopCatalog;
 
 use ZooShopCatalog\Product\Create\Handler\Create;
 use ZooShopCatalog\Product\Create\Handler\CreateFactory;
+use ZooShopCatalog\Product\Create\Processor\Processor;
+use ZooShopCatalog\Product\Create\Processor\ProcessorFactory;
 
 /**
  * The configuration provider for the ZooShopCatalog module
@@ -37,7 +39,8 @@ class ConfigProvider
             'invokables' => [
             ],
             'factories'  => [
-                Create::class => CreateFactory::class
+                Create::class => CreateFactory::class,
+                Processor::class => ProcessorFactory::class
             ],
         ];
     }
