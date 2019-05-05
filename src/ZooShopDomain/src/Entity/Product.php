@@ -2,12 +2,16 @@
 namespace ZooShopDomain\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use ZooShopCatalog\Product\ProductDTO;
 use ZooShopDomain\Entity\Traits\EntityUuidTrait;
 use ZooShopDomain\ValueObjects\Id\IdVO;
 use ZooShopDomain\ValueObjects\Title\TitleVO;
+use JsonSerializable;
 
-class Product
+class Product implements JsonSerializable
 {
+    use EntityUuidTrait;
+
     const TITLE = 'title';
     const CATEGORY = 'category';
 
@@ -28,14 +32,41 @@ class Product
     private $metaDescription;
     private $metaKeyWords;
 
-
-    use EntityUuidTrait;
-
     public function __construct(
         IdVO $id,
         TitleVO $title
     ) {
         $this->id = $id;
         $this->title = $title;
+    }
+
+    /**
+     * @param ProductDTO $productDTO
+     * @return Product
+     * @throws \Exception
+     */
+    public static function createFromDTO(ProductDTO $productDTO) : Product
+    {
+        $valueObjects = $productDTO->getValueObjects();
+        return new self(
+            IdVO::create(),
+            $valueObjects[self::TITLE]
+        );
+    }
+
+    /**
+     * Specify data which should be serialized to JSON
+     * @link https://php.net/manual/en/jsonserializable.jsonserialize.php
+     * @return mixed data which can be serialized by <b>json_encode</b>,
+     * which is a value of any type other than a resource.
+     * @since 5.4.0
+     */
+    public function jsonSerialize()
+    {
+        return [
+            IdVO::NAME => $this->id,
+            self::TITLE => $this->title,
+            self::CATEGORY => $this->category
+        ];
     }
 }
