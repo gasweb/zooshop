@@ -1,9 +1,8 @@
 <?php
 /** @var \ZooShopCatalog\Product\Create\CreateForm $createForm */
-$createForm = $this->form;
+$createForm = $this->createForm;
 ?>
-
-<?=$this->form()->openTag($this->form); ?>
+<?=$this->form()->openTag($createForm); ?>
 <div class="form-group row">
     <?=$this->formLabel($createForm->getTitle())?>
     <div class="col-sm-8">
