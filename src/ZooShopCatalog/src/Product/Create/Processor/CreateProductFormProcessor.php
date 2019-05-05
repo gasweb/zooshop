@@ -5,15 +5,14 @@ namespace ZooShopCatalog\Product\Create\Processor;
 
 use Psr\Http\Message\ResponseInterface;
 use Psr\Http\Message\ServerRequestInterface;
+use Psr\Http\Server\MiddlewareInterface;
 use Psr\Http\Server\RequestHandlerInterface;
 use Zend\Diactoros\Response\HtmlResponse;
-use Zend\Diactoros\Response\RedirectResponse;
 use Zend\Expressive\Template\TemplateRendererInterface;
-use ZooShopApp\ConfigProvider;
 use ZooShopCatalog\Product\Create\CreateForm;
 use ZooShopCatalog\Product\ProductDTO;
 
-class CreateProductFormProcessor implements RequestHandlerInterface
+class CreateProductFormProcessor implements MiddlewareInterface
 {
     /**
      * @var TemplateRendererInterface
@@ -25,7 +24,14 @@ class CreateProductFormProcessor implements RequestHandlerInterface
         $this->renderer = $renderer;
     }
 
-    public function handle(ServerRequestInterface $request) : ResponseInterface
+    /**
+     * Process an incoming server request.
+     *
+     * Processes an incoming server request in order to produce a response.
+     * If unable to produce the response itself, it may delegate to the provided
+     * request handler to do so.
+     */
+    public function process(ServerRequestInterface $request, RequestHandlerInterface $handler): ResponseInterface
     {
         $productDTO = new ProductDTO();
         $createForm = new CreateForm();
@@ -39,7 +45,8 @@ class CreateProductFormProcessor implements RequestHandlerInterface
                 ]
             ));
         }
-
-
+        return $handler->handle(
+            $request->withAttribute(ProductDTO::class, $productDTO)
+        );
     }
 }
