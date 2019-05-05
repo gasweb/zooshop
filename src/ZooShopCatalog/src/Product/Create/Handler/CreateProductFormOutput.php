@@ -12,7 +12,7 @@ use Zend\Expressive\Template\TemplateRendererInterface;
 use ZooShopApp\ConfigProvider;
 use ZooShopCatalog\Product\Create\CreateForm;
 
-class Create implements RequestHandlerInterface
+class CreateProductFormOutput implements RequestHandlerInterface
 {
     /**
      * @var TemplateRendererInterface
@@ -26,16 +26,13 @@ class Create implements RequestHandlerInterface
 
     public function handle(ServerRequestInterface $request) : ResponseInterface
     {
-        $form = new CreateForm();
-//        $form->setAttribute('action', ConfigProvider::PRODUCT_CREATE['route']);
-        $form->prepare();
-        // Do some work...
-        // Render and return a response:
+        $createForm = new CreateForm();
+        $createForm->prepare();
         return new HtmlResponse($this->renderer->render(
             'product::create',
             [
-                'form' => $form
-            ] // parameters to pass to template
+                'createForm' => $createForm
+            ]
         ));
     }
 }
