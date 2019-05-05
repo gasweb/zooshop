@@ -16,6 +16,11 @@ class ConfigProvider
         'alias' => 'admin.product.add'
     ];
 
+    const PRODUCT_CREATE_PROCESSOR = [
+        'route' => '/admin/product/add',
+        'alias' => 'post.admin.product.add'
+    ];
+
     /**
      * Returns the configuration array
      *
