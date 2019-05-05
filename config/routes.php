@@ -8,6 +8,9 @@ use Zend\Expressive\MiddlewareFactory;
 use ZooShopApp\ConfigProvider;
 use ZooShopCatalog\Product\Create\Processor\CreateProductFormProcessor;
 use ZooShopCatalog\Product\Create\Handler\CreateProductFormOutput;
+use ZooShopCatalog\Product\Edit\Handler\EditProductFormOutput;
+use ZooShopDomain\Entity\Middleware\ProductCreate\ProductCreateEntityMiddleware;
+use ZooShopDomain\Entity\Manager\FlushMiddleware\FlushMiddleware;
 
 /**
  * Setup routes with a single request method:
@@ -33,8 +36,17 @@ return function (Application $app, MiddlewareFactory $factory, ContainerInterfac
     $app->post(
         ConfigProvider::PRODUCT_CREATE_PROCESSOR['route'],
         [
-            CreateProductFormProcessor::class
+            CreateProductFormProcessor::class,
+            ProductCreateEntityMiddleware::class,
+            FlushMiddleware::class
         ],
         ConfigProvider::PRODUCT_CREATE_PROCESSOR['alias']
+    );
+    $app->get(
+        ConfigProvider::PRODUCT_EDIT['route'],
+        [
+            EditProductFormOutput::class
+        ],
+        ConfigProvider::PRODUCT_EDIT['alias']
     );
 };

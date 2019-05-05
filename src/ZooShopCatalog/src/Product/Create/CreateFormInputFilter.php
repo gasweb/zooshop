@@ -7,6 +7,7 @@ use Zend\Filter\StringTrim;
 use Zend\Filter\StripTags;
 use Zend\InputFilter\InputFilter;
 use Zend\Validator\NotEmpty;
+use ZooShopCatalog\Product\Create\CreateForm;
 
 class CreateFormInputFilter extends InputFilter
 {

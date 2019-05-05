@@ -4,7 +4,7 @@ return [
         'connection' => [
             'orm_shop' => [
                 'params' => [
-                    'url' => 'mysql://%db_username%:%db_password%@%db_host%/%database%',
+                    'url' => 'mysql://%db_username%:%db_password%@%db_host%/%database%;charset=utf8',
                 ],
             ],
         ],
@@ -15,7 +15,7 @@ return [
                     'ZooShopDomain\Entity' => 'stock_entity',
                 ],
             ],
-            'stock_entity' => [
+            'zoo_shop_entity' => [
                 'class' => \Doctrine\ORM\Mapping\Driver\AnnotationDriver::class,
                 'cache' => 'array',
                 'paths' => __DIR__ . '/../../src/ZooShopDomain/src/Entity',
@@ -23,6 +23,8 @@ return [
         ],
         'types' => [
                     'brand'  => \ZooShopDomain\ValueObjects\Brand\BrandType::class,
+                    'title' => \ZooShopDomain\ValueObjects\Title\TitleType::class,
+                    'uuid' => \ZooShopDomain\ValueObjects\Id\IdType::class
                 ],
         'dbal' => [
             'mapping_types' => [

@@ -3,7 +3,7 @@ namespace ZooShopDomain\ValueObjects\Brand;
 
 use Doctrine\DBAL\Types\Type;
 use Doctrine\DBAL\Platforms\AbstractPlatform;
-use StockDomain\ValueObjects\Quantity\QuantityVO;
+use ZooShopDomain\ValueObjects\Quantity\QuantityVO;
 
 /**
  * Quantity data type

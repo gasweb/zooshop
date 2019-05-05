@@ -8,6 +8,10 @@ use ZooShopDomain\ValueObjects\Id\IdVO;
 use ZooShopDomain\ValueObjects\Title\TitleVO;
 use JsonSerializable;
 
+/**
+ * @ORM\Entity
+ * @ORM\Table(name="product")
+ */
 class Product implements JsonSerializable
 {
     use EntityUuidTrait;
@@ -22,7 +26,7 @@ class Product implements JsonSerializable
 
     /**
      * @var TitleVO $originalTitle
-     * @ORM\Column(name="original_title", type="title")
+     * @ORM\Column(name="original_title", type="title", length=100, nullable=true)
      */
     private $originalTitle;
     private $sku;
@@ -68,5 +72,16 @@ class Product implements JsonSerializable
             self::TITLE => $this->title,
             self::CATEGORY => $this->category
         ];
+    }
+
+    /**
+     * @param Product $product
+     * @return ProductDTO
+     */
+    public function createDTO() : ProductDTO
+    {
+        $productDTO = new ProductDTO();
+        $productDTO->setTitle($this->title->__toString());
+        return $productDTO;
     }
 }

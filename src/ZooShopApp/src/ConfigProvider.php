@@ -15,6 +15,10 @@ class ConfigProvider
         'route' => '/admin/product/add',
         'alias' => 'admin.product.add'
     ];
+    const PRODUCT_EDIT = [
+        'route' => '/admin/product/edit/:id',
+        'alias' => 'admin.product.edit'
+    ];
 
     const PRODUCT_CREATE_PROCESSOR = [
         'route' => '/admin/product/add',

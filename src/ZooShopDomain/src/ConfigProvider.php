@@ -4,6 +4,13 @@ declare(strict_types=1);
 
 namespace ZooShopDomain;
 
+use ZooShopDomain\Entity\Manager\FlushMiddleware\FlushMiddleware;
+use ZooShopDomain\Entity\Manager\FlushMiddleware\FlushMiddlewareFactory;
+use ZooShopDomain\Entity\Middleware\ProductCreate\ProductCreateEntityMiddlewareFactory;
+use ZooShopDomain\Entity\Middleware\ProductCreate\ProductCreateEntityMiddleware;
+use ZooShopDomain\Repository\GetProductById\GetProductById;
+use ZooShopDomain\Repository\GetProductById\GetProductByIdFactory;
+
 /**
  * The configuration provider for the ZooShopDomain module
  *
@@ -34,6 +41,9 @@ class ConfigProvider
             'invokables' => [
             ],
             'factories'  => [
+                ProductCreateEntityMiddleware::class => ProductCreateEntityMiddlewareFactory::class,
+                FlushMiddleware::class => FlushMiddlewareFactory::class,
+                GetProductById::class => GetProductByIdFactory::class
             ],
         ];
     }

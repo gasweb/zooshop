@@ -42,10 +42,12 @@ class ProductDTO
 
     /**
      * @param string $title
+     * @return ProductDTO
      */
-    public function setTitle(string $title): void
+    public function setTitle(string $title): ProductDTO
     {
         $this->title = $title;
+        return $this;
     }
 
     /**
@@ -58,9 +60,11 @@ class ProductDTO
 
     /**
      * @param string $category
+     * @return ProductDTO
      */
-    public function setCategory(string $category): void
+    public function setCategory(string $category): ProductDTO
     {
         $this->category = $category;
+        return $this;
     }
 }
