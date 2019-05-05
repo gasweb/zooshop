@@ -28,6 +28,7 @@ $this->inlineScript()
         <nav class="navbar navbar-expand-sm navbar-dark bg-dark fixed-top" role="navigation">
             <div class="container">
                 <div class="navbar-header">
+                    <i class="fa fa-paw" style="color:rgba(255,255,255,.5)"></i>
                     <button type="button" class="navbar-toggler" data-toggle="collapse" data-target="#navbarCollapse" aria-controls="#navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
                         <span class="navbar-toggler-icon"></span>
                     </button>
@@ -38,17 +39,9 @@ $this->inlineScript()
                 <div class="collapse navbar-collapse" id="navbarCollapse">
                     <ul class="navbar-nav mr-auto">
                         <li class="nav-item">
-                            <a href="https://docs.zendframework.com/zend-expressive" target="_blank" class="nav-link">
-                                <i class="fa fa-book"></i> Docs
+                            <a href="<?=$this->url('admin.product.add')?>" class="nav-link">
+                                <i class="fa fa-plus"></i> <?=$this->translate('ADD_NEW_PRODUCT') ?>
                             </a>
-                        </li>
-                        <li class="nav-item">
-                            <a href="https://github.com/zendframework/zend-expressive" target="_blank" class="nav-link">
-                                <i class="fa fa-wrench"></i> Contribute
-                            </a>
-                        </li>
-                        <li class="nav-item">
-                   
                         </li>
                     </ul>
                 </div>
@@ -65,9 +58,6 @@ $this->inlineScript()
     <footer class="app-footer">
         <div class="container">
             <hr />
-            <p>
-                &copy; 2005 - <?=date('Y')?> by Zend Technologies Ltd. All rights reserved.
-            </p>
         </div>
     </footer>
 
