@@ -1,7 +1,25 @@
 <?php
-//var_dump($this->url('admin.product.create'));
-//$this->form->prepare();
+/** @var \ZooShopCatalog\Product\Create\CreateForm $createForm */
+$createForm = $this->form;
 ?>
+
 <?=$this->form()->openTag($this->form); ?>
-<?=$this->formRow($this->form->get('title')); ?>
+<div class="form-group row">
+    <?=$this->formLabel($createForm->getTitle())?>
+    <div class="col-sm-8">
+        <?=$this->formInput($createForm->getTitle())?>
+    </div>
+    <?=$this->formElementErrors($createForm->getTitle()) ?>
+</div>
+<div class="form-group row">
+    <?=$this->formLabel($createForm->getCategory())?>
+    <div class="col-sm-8">
+        <?=$this->formSelect($createForm->getCategory())?>
+    </div>
+    <?=$this->formElementErrors()->setMessageOpenFormat('<div class="alert alert-warning" style="width: 100%;" role="alert">')
+        ->setMessageSeparatorString('</div><div class="alert alert-warning" style="width: 100%;" role="alert">')
+        ->setMessageCloseString('</div>')
+        ->render($createForm->getCategory()) ?>
+</div>
+<?=$this->formButton($createForm->getSubmit(), $createForm->getSubmitValue()) ?>
 <?=$this->form()->closeTag(); ?>
