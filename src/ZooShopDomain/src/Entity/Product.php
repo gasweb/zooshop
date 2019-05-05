@@ -47,7 +47,7 @@ class Product implements JsonSerializable
      */
     public static function createFromDTO(ProductDTO $productDTO) : Product
     {
-        $valueObjects = $productDTO->getValueObjects();
+        $valueObjects = $productDTO->generateValueObjects();
         return new self(
             IdVO::create(),
             $valueObjects[self::TITLE]

@@ -20,7 +20,7 @@ class ProductDTO
      * @return array
      * @throws Exception
      */
-    public function getValueObjects() : array
+    public function generateValueObjects() : array
     {
         try {
             return [
@@ -35,7 +35,7 @@ class ProductDTO
     /**
      * @return string
      */
-    public function getTitle(): string
+    public function getTitle(): ?string
     {
         return $this->title;
     }
@@ -51,7 +51,7 @@ class ProductDTO
     /**
      * @return string
      */
-    public function getCategory(): string
+    public function getCategory(): ?string
     {
         return $this->category;
     }
