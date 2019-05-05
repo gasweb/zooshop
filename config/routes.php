@@ -28,4 +28,11 @@ return function (Application $app, MiddlewareFactory $factory, ContainerInterfac
         ],
         ConfigProvider::PRODUCT_CREATE['alias']
     );
+    $app->post(
+        ConfigProvider::PRODUCT_CREATE_PROCESSOR['route'],
+        [
+            \ZooShopCatalog\Product\Create\Processor\Processor::class
+        ],
+        ConfigProvider::PRODUCT_CREATE_PROCESSOR['alias']
+    );
 };
