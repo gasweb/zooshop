@@ -23,6 +23,29 @@ class TitleType extends Type
     }
 
     /**
+     * @param string $value
+     * @param AbstractPlatform $platform
+     * @return mixed|TitleVO
+     */
+    public function convertToPHPValue($value, AbstractPlatform $platform)
+    {
+        try {
+            return new TitleVO($value);
+        } catch (\Exception $exception) {
+        }
+    }
+
+    /**
+     * @param TitleVO $value
+     * @param AbstractPlatform $platform
+     * @return string
+     */
+    public function convertToDatabaseValue($value, AbstractPlatform $platform)
+    {
+        return $value->__tostring();
+    }
+
+    /**
      * Gets the name of this type.
      *
      * @return string
