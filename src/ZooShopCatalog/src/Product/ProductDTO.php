@@ -3,40 +3,63 @@ declare(strict_types = 1);
 
 namespace ZooShopCatalog\Product;
 
+use ZooShopDomain\Entity\Product;
+use ZooShopDomain\ValueObjects\Category\CategoryVO;
+use ZooShopDomain\ValueObjects\Title\TitleVO;
+use Exception;
+
 class ProductDTO
 {
-    private $title;
+    /** @var string $title */
+    private $title = null;
 
-    private $category;
+    /** @var string $category */
+    private $category = null;
 
     /**
-     * @return mixed
+     * @return array
+     * @throws Exception
      */
-    public function getTitle()
+    public function getValueObjects() : array
+    {
+        try {
+            return [
+                Product::TITLE => TitleVO::create($this->title),
+                Product::CATEGORY => CategoryVO::create($this->category)
+            ];
+        } catch (Exception $exception) {
+            throw $exception;
+        }
+    }
+
+    /**
+     * @return string
+     */
+    public function getTitle(): string
     {
         return $this->title;
     }
 
     /**
-     * @param mixed $title
+     * @param string $title
      */
-    public function setTitle($title): void
+    public function setTitle(string $title): void
     {
         $this->title = $title;
     }
 
     /**
-     * @return mixed
+     * @return string
      */
-    public function getCategory()
+    public function getCategory(): string
     {
         return $this->category;
     }
 
     /**
-     * @param mixed $category
+     * @param string $category
      */
-    public function setCategory($category): void
+    public function setCategory(string $category): void
     {
         $this->category = $category;
     }
