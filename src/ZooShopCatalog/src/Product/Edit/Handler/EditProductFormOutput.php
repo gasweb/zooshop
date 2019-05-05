@@ -39,7 +39,11 @@ class EditProductFormOutput implements RequestHandlerInterface
     {
         try {
             /** @var Product $product */
-            $product = $this->getProductById->__invoke(new IdVO('165bbde0-6f73-11e9-a84f-80a589118d45'));
+            $product = $this->getProductById->__invoke(
+                IdVO::create(
+                    $request->getAttribute(IdVO::NAME)
+                )
+            );
             $createForm = new CreateForm();
             $createForm->bind($product->createDTO());
             $createForm->prepare();
