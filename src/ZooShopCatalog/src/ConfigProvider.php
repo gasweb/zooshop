@@ -4,10 +4,10 @@ declare(strict_types=1);
 
 namespace ZooShopCatalog;
 
-use ZooShopCatalog\Product\Create\Handler\Create;
-use ZooShopCatalog\Product\Create\Handler\CreateFactory;
-use ZooShopCatalog\Product\Create\Processor\Processor;
-use ZooShopCatalog\Product\Create\Processor\ProcessorFactory;
+use ZooShopCatalog\Product\Create\Handler\CreateProductFormOutput;
+use ZooShopCatalog\Product\Create\Handler\CreateProductFormOutputFactory;
+use ZooShopCatalog\Product\Create\Processor\CreateProductFormProcessor;
+use ZooShopCatalog\Product\Create\Processor\CreateProductFormProcessorFactory;
 
 /**
  * The configuration provider for the ZooShopCatalog module
@@ -39,8 +39,8 @@ class ConfigProvider
             'invokables' => [
             ],
             'factories'  => [
-                Create::class => CreateFactory::class,
-                Processor::class => ProcessorFactory::class
+                CreateProductFormOutput::class => CreateProductFormOutputFactory::class,
+                CreateProductFormProcessor::class => CreateProductFormProcessorFactory::class
             ],
         ];
     }
