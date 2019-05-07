@@ -8,6 +8,8 @@ use ZooShopCatalog\Product\Create\Processor\CreateProductFormProcessor;
 use ZooShopCatalog\Product\Create\Processor\CreateProductFormProcessorFactory;
 use ZooShopCatalog\Product\Edit\Handler\EditProductFormOutput;
 use ZooShopCatalog\Product\Edit\Handler\EditProductFormOutputFactory;
+use ZooShopCatalog\Product\Create\Handler\CreateProductFormOutput;
+use ZooShopCatalog\Product\Create\Handler\CreateProductFormOutputFactory;
 
 /**
  * The configuration provider for the ZooShopCatalog module
@@ -40,7 +42,8 @@ class ConfigProvider
             ],
             'factories'  => [
                 EditProductFormOutput::class => EditProductFormOutputFactory::class,
-                CreateProductFormProcessor::class => CreateProductFormProcessorFactory::class
+                CreateProductFormProcessor::class => CreateProductFormProcessorFactory::class,
+                CreateProductFormOutput::class => CreateProductFormOutputFactory::class
             ],
         ];
     }

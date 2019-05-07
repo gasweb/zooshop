@@ -9,8 +9,8 @@ use Zend\Expressive\Template\TemplateRendererInterface;
 
 class CreateProductFormOutputFactory
 {
-    public function __invoke(ContainerInterface $container) : EditProductFormOutput
+    public function __invoke(ContainerInterface $container) : CreateProductFormOutput
     {
-        return new EditProductFormOutput($container->get(TemplateRendererInterface::class));
+        return new CreateProductFormOutput($container->get(TemplateRendererInterface::class));
     }
 }
