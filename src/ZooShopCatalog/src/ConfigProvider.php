@@ -10,6 +10,10 @@ use ZooShopCatalog\Product\Edit\Handler\EditProductFormOutput;
 use ZooShopCatalog\Product\Edit\Handler\EditProductFormOutputFactory;
 use ZooShopCatalog\Product\Create\Handler\CreateProductFormOutput;
 use ZooShopCatalog\Product\Create\Handler\CreateProductFormOutputFactory;
+use ZooShopCatalog\Product\Create\EditRedirect\RedirectToEditPageFactory;
+use ZooShopCatalog\Product\Create\EditRedirect\RedirectToEditPage;
+use ZooShopCatalog\Product\Edit\Processor\EditProductFormProcessor;
+use ZooShopCatalog\Product\Edit\Processor\EditProductFormProcessorFactory;
 
 /**
  * The configuration provider for the ZooShopCatalog module
@@ -43,7 +47,9 @@ class ConfigProvider
             'factories'  => [
                 EditProductFormOutput::class => EditProductFormOutputFactory::class,
                 CreateProductFormProcessor::class => CreateProductFormProcessorFactory::class,
-                CreateProductFormOutput::class => CreateProductFormOutputFactory::class
+                CreateProductFormOutput::class => CreateProductFormOutputFactory::class,
+                RedirectToEditPage::class => RedirectToEditPageFactory::class,
+                EditProductFormProcessor::class => EditProductFormProcessorFactory::class
             ],
         ];
     }

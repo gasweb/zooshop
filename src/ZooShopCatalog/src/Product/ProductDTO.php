@@ -5,6 +5,7 @@ namespace ZooShopCatalog\Product;
 
 use ZooShopDomain\Entity\Product;
 use ZooShopDomain\ValueObjects\Category\CategoryVO;
+use ZooShopDomain\ValueObjects\Id\IdVO;
 use ZooShopDomain\ValueObjects\Title\TitleVO;
 use Exception;
 
@@ -16,6 +17,14 @@ class ProductDTO
     /** @var string $category */
     private $category = null;
 
+    /** @var IdVO $id */
+    private $id;
+
+    public function __construct(IdVO $id)
+    {
+        $this->id = $id;
+    }
+
     /**
      * @return array
      * @throws Exception
@@ -24,6 +33,7 @@ class ProductDTO
     {
         try {
             return [
+                Product::ID => $this->id,
                 Product::TITLE => TitleVO::create($this->title),
                 Product::CATEGORY => CategoryVO::create($this->category)
             ];

@@ -9,9 +9,11 @@ use Psr\Http\Message\ServerRequestInterface;
 use Psr\Http\Server\RequestHandlerInterface;
 use Zend\Diactoros\Response\HtmlResponse;
 use Zend\Expressive\Handler\NotFoundHandler;
+use Zend\Expressive\Router\RouterInterface;
 use Zend\Expressive\Template\TemplateRendererInterface;
 use ZooShopApp\ConfigProvider;
 use ZooShopCatalog\Product\Create\CreateForm;
+use ZooShopCatalog\Product\Edit\EditForm;
 use ZooShopDomain\Entity\Product;
 use ZooShopDomain\Exceptions\Product\ProductNotFoundException;
 use ZooShopDomain\Repository\GetProductById\GetProductById;
@@ -27,12 +29,17 @@ class EditProductFormOutput implements RequestHandlerInterface
     /** @var GetProductById $getProductById */
     private $getProductById;
 
+    /** @var RouterInterface $router */
+    private $router;
+
     public function __construct(
         TemplateRendererInterface $renderer,
-        GetProductById $getProductById
+        GetProductById $getProductById,
+        RouterInterface $router
     ) {
         $this->renderer = $renderer;
         $this->getProductById = $getProductById;
+        $this->router = $router;
     }
 
     public function handle(ServerRequestInterface $request) : ResponseInterface
@@ -44,13 +51,19 @@ class EditProductFormOutput implements RequestHandlerInterface
                     $request->getAttribute(IdVO::NAME)
                 )
             );
-            $createForm = new CreateForm();
-            $createForm->bind($product->createDTO());
-            $createForm->prepare();
+            $editForm = new EditForm();
+            $editForm->setAttribute('action', $this->router->generateUri(
+                ConfigProvider::PRODUCT_CREATE_PROCESSOR['alias'],
+                [
+                    Product::ID => $product->getId()
+                ]
+            ));
+            $editForm->bind($product->createDTO());
+            $editForm->prepare();
             return new HtmlResponse($this->renderer->render(
                 'product::edit',
                 [
-                    'createForm' => $createForm
+                    'editForm' => $editForm
                 ]
             ));
         } catch (ProductNotFoundException $productNotFoundException) {

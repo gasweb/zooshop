@@ -20,5 +20,6 @@ $createForm = $this->createForm;
         ->setMessageCloseString('</div>')
         ->render($createForm->getCategory()) ?>
 </div>
+<?=$this->formInput($createForm->getCsrf()) ?>
 <?=$this->formButton($createForm->getSubmit(), $createForm->getSubmitValue()) ?>
 <?=$this->form()->closeTag(); ?>

@@ -11,6 +11,9 @@ use ZooShopCatalog\Product\Create\Handler\CreateProductFormOutput;
 use ZooShopCatalog\Product\Edit\Handler\EditProductFormOutput;
 use ZooShopDomain\Entity\Middleware\ProductCreate\ProductCreateEntityMiddleware;
 use ZooShopDomain\Entity\Manager\FlushMiddleware\FlushMiddleware;
+use ZooShopCatalog\Product\Create\EditRedirect\RedirectToEditPage;
+use ZooShopCatalog\Product\Edit\Processor\EditProductFormProcessor;
+use ZooShopDomain\Entity\Middleware\ProductUpdate\ProductUpdateEntityMiddleware;
 
 /**
  * Setup routes with a single request method:
@@ -38,7 +41,8 @@ return function (Application $app, MiddlewareFactory $factory, ContainerInterfac
         [
             CreateProductFormProcessor::class,
             ProductCreateEntityMiddleware::class,
-            FlushMiddleware::class
+            FlushMiddleware::class,
+            RedirectToEditPage::class
         ],
         ConfigProvider::PRODUCT_CREATE_PROCESSOR['alias']
     );
@@ -48,5 +52,15 @@ return function (Application $app, MiddlewareFactory $factory, ContainerInterfac
             EditProductFormOutput::class
         ],
         ConfigProvider::PRODUCT_EDIT['alias']
+    );
+    $app->post(
+        ConfigProvider::PRODUCT_EDIT_PROCESSOR['route'],
+        [
+            EditProductFormProcessor::class,
+            ProductUpdateEntityMiddleware::class,
+            FlushMiddleware::class,
+            RedirectToEditPage::class
+        ],
+        ConfigProvider::PRODUCT_EDIT_PROCESSOR['alias']
     );
 };

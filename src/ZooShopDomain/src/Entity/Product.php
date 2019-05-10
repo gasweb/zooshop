@@ -18,6 +18,7 @@ class Product implements JsonSerializable
 
     const TITLE = 'title';
     const CATEGORY = 'category';
+    const ID = 'id';
 
     /**
      * @var TitleVO $title
@@ -25,10 +26,7 @@ class Product implements JsonSerializable
      */
     private $title;
 
-    /**
-     * @var TitleVO $originalTitle
-     * @ORM\Column(name="original_title", type="title", length=100, nullable=true)
-     */
+
     private $originalTitle;
     private $sku;
     private $brand;
@@ -54,7 +52,7 @@ class Product implements JsonSerializable
     {
         $valueObjects = $productDTO->generateValueObjects();
         return new self(
-            IdVO::create(),
+            $valueObjects[self::ID],
             $valueObjects[self::TITLE]
         );
     }
@@ -81,7 +79,7 @@ class Product implements JsonSerializable
      */
     public function createDTO() : ProductDTO
     {
-        $productDTO = new ProductDTO();
+        $productDTO = new ProductDTO(IdVO::createNew());
         $productDTO->setTitle($this->title->__toString());
         return $productDTO;
     }

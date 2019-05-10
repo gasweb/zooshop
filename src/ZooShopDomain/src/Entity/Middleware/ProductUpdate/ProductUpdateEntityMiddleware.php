@@ -1,5 +1,5 @@
 <?php
-namespace ZooShopDomain\Entity\Middleware\ProductCreate;
+namespace ZooShopDomain\Entity\Middleware\ProductUpdate;
 
 use Doctrine\ORM\EntityManagerInterface;
 use Psr\Http\Message\ResponseInterface;
@@ -10,7 +10,7 @@ use ZooShopCatalog\Product\ProductDTO;
 use ZooShopDomain\Entity\Product;
 use Exception;
 
-final class ProductCreateEntityMiddleware implements MiddlewareInterface
+final class ProductUpdateEntityMiddleware implements MiddlewareInterface
 {
     /** @var EntityManagerInterface $entityManager */
     private $entityManager;

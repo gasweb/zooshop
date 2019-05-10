@@ -3,13 +3,14 @@ namespace ZooShopDomain\Entity\Traits;
 
 use Doctrine\ORM\Mapping as ORM;
 use Ramsey\Uuid\UuidInterface;
+use ZooShopDomain\ValueObjects\Id\IdVO;
 
 trait EntityUuidTrait
 {
     /**
      * The internal primary identity key.
      *
-     * @var UuidInterface
+     * @var IdVO
      *
      * @ORM\Column(type="uuid", unique=true)
      * @ORM\Id
@@ -18,7 +19,10 @@ trait EntityUuidTrait
      */
     protected $id;
 
-    public function getId(): UuidInterface
+    /**
+     * @return IdVO
+     */
+    public function getId(): IdVO
     {
         return $this->id;
     }

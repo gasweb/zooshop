@@ -25,6 +25,11 @@ class ConfigProvider
         'alias' => 'post.admin.product.add'
     ];
 
+    const PRODUCT_EDIT_PROCESSOR = [
+        'route' => '/admin/product/edit/:id',
+        'alias' => 'post.admin.product.edit'
+    ];
+
     /**
      * Returns the configuration array
      *

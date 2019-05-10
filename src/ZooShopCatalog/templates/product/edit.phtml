@@ -1,24 +1,24 @@
 <?php
-/** @var \ZooShopCatalog\Product\Create\CreateForm $createForm */
-$createForm = $this->createForm;
+/** @var \ZooShopCatalog\Product\Edit\EditForm $editForm */
+$editForm = $this->editForm;
 ?>
-<?=$this->form()->openTag($createForm); ?>
+<?=$this->form()->openTag($editForm); ?>
 <div class="form-group row">
-    <?=$this->formLabel($createForm->getTitle())?>
+    <?=$this->formLabel($editForm->getTitle())?>
     <div class="col-sm-8">
-        <?=$this->formInput($createForm->getTitle())?>
+        <?=$this->formInput($editForm->getTitle())?>
     </div>
-    <?=$this->formElementErrors($createForm->getTitle()) ?>
+    <?=$this->formElementErrors($editForm->getTitle()) ?>
 </div>
 <div class="form-group row">
-    <?=$this->formLabel($createForm->getCategory())?>
+    <?=$this->formLabel($editForm->getCategory())?>
     <div class="col-sm-8">
-        <?=$this->formSelect($createForm->getCategory())?>
+        <?=$this->formSelect($editForm->getCategory())?>
     </div>
     <?=$this->formElementErrors()->setMessageOpenFormat('<div class="alert alert-warning" style="width: 100%;" role="alert">')
         ->setMessageSeparatorString('</div><div class="alert alert-warning" style="width: 100%;" role="alert">')
         ->setMessageCloseString('</div>')
-        ->render($createForm->getCategory()) ?>
+        ->render($editForm->getCategory()) ?>
 </div>
-<?=$this->formButton($createForm->getSubmit(), $createForm->getSubmitValue()) ?>
+<?=$this->formButton($editForm->getSubmit(), $editForm->getSubmitValue()) ?>
 <?=$this->form()->closeTag(); ?>
