@@ -99,6 +99,7 @@ class Product implements JsonSerializable
             IdVO::create($this->id)
         );
         $productDTO->setTitle($this->title->__toString());
+        $productDTO->setCategory($this->category->__toString());
         return $productDTO;
     }
 }
