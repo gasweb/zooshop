@@ -57,6 +57,12 @@ class Product implements JsonSerializable
         );
     }
 
+    public function updateFromDTO(ProductDTO $productDTO)
+    {
+        $valueObjects = $productDTO->generateValueObjects();
+        $this->title = $valueObjects[self::TITLE];
+    }
+
     /**
      * Specify data which should be serialized to JSON
      * @link https://php.net/manual/en/jsonserializable.jsonserialize.php
@@ -67,7 +73,7 @@ class Product implements JsonSerializable
     public function jsonSerialize()
     {
         return [
-            IdVO::NAME => $this->id,
+            self::ID => $this->id,
             self::TITLE => $this->title,
             self::CATEGORY => $this->category
         ];
@@ -79,7 +85,9 @@ class Product implements JsonSerializable
      */
     public function createDTO() : ProductDTO
     {
-        $productDTO = new ProductDTO(IdVO::createNew());
+        $productDTO = new ProductDTO(
+            IdVO::create($this->id)
+        );
         $productDTO->setTitle($this->title->__toString());
         return $productDTO;
     }

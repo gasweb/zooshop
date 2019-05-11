@@ -51,7 +51,11 @@ class EditProductFormProcessor implements MiddlewareInterface
                 Product::ID => $request->getAttribute(Product::ID)
             ]
         );
-        $productDTO = new ProductDTO(IdVO::createNew());
+        $productDTO = new ProductDTO(
+            IdVO::create(
+                $request->getAttribute(Product::ID)
+            )
+        );
         $editForm = new EditForm();
         $editForm->bind($productDTO);
         $editForm->setData($request->getParsedBody());

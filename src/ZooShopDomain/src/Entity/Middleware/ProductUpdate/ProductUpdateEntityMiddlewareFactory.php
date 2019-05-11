@@ -2,6 +2,7 @@
 namespace ZooShopDomain\Entity\Middleware\ProductUpdate;
 
 use Interop\Container\ContainerInterface;
+use ZooShopDomain\Repository\GetProductById\GetProductById;
 use ZooShopDomain\Repository\ProductCreateRepository\ProductCreateCreateRepository;
 use Zend\ServiceManager\Factory\FactoryInterface;
 

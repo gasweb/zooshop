@@ -13,12 +13,18 @@ class IdVO implements JsonSerializable, IGet
     /** @var string $id */
     private $id;
 
+    /**
+     * IdVO constructor.
+     * @param string|null $id
+     * @throws Exception
+     */
     public function __construct(string $id = null)
     {
         if (!$id) {
             try {
                 $id = Uuid::uuid4()->toString();
             } catch (Exception $exception) {
+                throw $exception;
             }
         }
         $this->id = $id;

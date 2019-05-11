@@ -14,6 +14,7 @@ use ZooShopDomain\Entity\Manager\FlushMiddleware\FlushMiddleware;
 use ZooShopCatalog\Product\Create\EditRedirect\RedirectToEditPage;
 use ZooShopCatalog\Product\Edit\Processor\EditProductFormProcessor;
 use ZooShopDomain\Entity\Middleware\ProductUpdate\ProductUpdateEntityMiddleware;
+use ZooShopDomain\Entity\Middleware\ProductUpdate\UpdateProductEntityByDTO\UpdateProductEntityByDTO;
 
 /**
  * Setup routes with a single request method:
@@ -57,6 +58,7 @@ return function (Application $app, MiddlewareFactory $factory, ContainerInterfac
         ConfigProvider::PRODUCT_EDIT_PROCESSOR['route'],
         [
             EditProductFormProcessor::class,
+            UpdateProductEntityByDTO::class,
             ProductUpdateEntityMiddleware::class,
             FlushMiddleware::class,
             RedirectToEditPage::class

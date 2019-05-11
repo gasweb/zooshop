@@ -1,4 +1,6 @@
 <?php
+declare(strict_types = 1);
+
 namespace ZooShopDomain\Entity\Middleware\ProductUpdate;
 
 use Doctrine\ORM\EntityManagerInterface;
@@ -6,7 +8,6 @@ use Psr\Http\Message\ResponseInterface;
 use Psr\Http\Message\ServerRequestInterface;
 use Psr\Http\Server\MiddlewareInterface;
 use Psr\Http\Server\RequestHandlerInterface;
-use ZooShopCatalog\Product\ProductDTO;
 use ZooShopDomain\Entity\Product;
 use Exception;
 
@@ -39,9 +40,8 @@ final class ProductUpdateEntityMiddleware implements MiddlewareInterface
     public function process(ServerRequestInterface $request, RequestHandlerInterface $handler): ResponseInterface
     {
         try {
-            /** @var ProductDTO $productDTO */
-            $productDTO = $request->getAttribute(ProductDTO::class);
-            $product = Product::createFromDTO($productDTO);
+            /** @var Product $product */
+            $product = $request->getAttribute(Product::class);
             $this->entityManager->persist($product);
             return $handler->handle($request->withAttribute(Product::class, $product));
         } catch (Exception $exception) {

@@ -53,7 +53,7 @@ class EditProductFormOutput implements RequestHandlerInterface
             );
             $editForm = new EditForm();
             $editForm->setAttribute('action', $this->router->generateUri(
-                ConfigProvider::PRODUCT_CREATE_PROCESSOR['alias'],
+                ConfigProvider::PRODUCT_EDIT_PROCESSOR['alias'],
                 [
                     Product::ID => $product->getId()
                 ]

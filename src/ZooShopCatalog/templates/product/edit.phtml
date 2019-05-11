@@ -20,5 +20,6 @@ $editForm = $this->editForm;
         ->setMessageCloseString('</div>')
         ->render($editForm->getCategory()) ?>
 </div>
+<?=$this->formInput($editForm->getCsrf()) ?>
 <?=$this->formButton($editForm->getSubmit(), $editForm->getSubmitValue()) ?>
 <?=$this->form()->closeTag(); ?>

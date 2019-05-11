@@ -77,4 +77,12 @@ class ProductDTO
         $this->category = $category;
         return $this;
     }
+
+    /**
+     * @return string
+     */
+    public function getId() : IdVO
+    {
+        return $this->id;
+    }
 }

@@ -8,6 +8,10 @@ use ZooShopDomain\Entity\Manager\FlushMiddleware\FlushMiddleware;
 use ZooShopDomain\Entity\Manager\FlushMiddleware\FlushMiddlewareFactory;
 use ZooShopDomain\Entity\Middleware\ProductCreate\ProductCreateEntityMiddlewareFactory;
 use ZooShopDomain\Entity\Middleware\ProductCreate\ProductCreateEntityMiddleware;
+use ZooShopDomain\Entity\Middleware\ProductUpdate\ProductUpdateEntityMiddleware;
+use ZooShopDomain\Entity\Middleware\ProductUpdate\ProductUpdateEntityMiddlewareFactory;
+use ZooShopDomain\Entity\Middleware\ProductUpdate\UpdateProductEntityByDTO\UpdateProductEntityByDTO;
+use ZooShopDomain\Entity\Middleware\ProductUpdate\UpdateProductEntityByDTO\UpdateProductEntityByDTOFactory;
 use ZooShopDomain\Repository\GetProductById\GetProductById;
 use ZooShopDomain\Repository\GetProductById\GetProductByIdFactory;
 
@@ -42,8 +46,10 @@ class ConfigProvider
             ],
             'factories'  => [
                 ProductCreateEntityMiddleware::class => ProductCreateEntityMiddlewareFactory::class,
+                ProductUpdateEntityMiddleware::class => ProductUpdateEntityMiddlewareFactory::class,
                 FlushMiddleware::class => FlushMiddlewareFactory::class,
-                GetProductById::class => GetProductByIdFactory::class
+                GetProductById::class => GetProductByIdFactory::class,
+                UpdateProductEntityByDTO::class => UpdateProductEntityByDTOFactory::class
             ],
         ];
     }
