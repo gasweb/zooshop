@@ -1,0 +1,10 @@
+<?php
+/** @var Zend\Form\ElementInterface|Zend\Form\FieldsetInterface $formElement */
+?>
+<div class="form-group row">
+    <?=$this->formLabel($formElement)?>
+    <div class="col-sm-8">
+        <?=$this->formInput($formElement)?>
+    </div>
+    <?=$this->formElementErrors($formElement) ?>
+</div>

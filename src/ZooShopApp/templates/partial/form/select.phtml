@@ -1,0 +1,13 @@
+<?php
+/** @var Zend\Form\ElementInterface|Zend\Form\FieldsetInterface $formElement */
+?>
+<div class="form-group row">
+    <?=$this->formLabel($formElement)?>
+    <div class="col-sm-8">
+        <?=$this->formSelect($formElement)?>
+    </div>
+    <?=$this->formElementErrors()->setMessageOpenFormat('<div class="alert alert-warning" style="width: 100%;" role="alert">')
+        ->setMessageSeparatorString('</div><div class="alert alert-warning" style="width: 100%;" role="alert">')
+        ->setMessageCloseString('</div>')
+        ->render($formElement) ?>
+</div>
