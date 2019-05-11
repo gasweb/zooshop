@@ -4,6 +4,7 @@ namespace ZooShopDomain\Entity;
 use Doctrine\ORM\Mapping as ORM;
 use ZooShopCatalog\Product\ProductDTO;
 use ZooShopDomain\Entity\Traits\EntityUuidTrait;
+use ZooShopDomain\ValueObjects\Category\CategoryVO;
 use ZooShopDomain\ValueObjects\Id\IdVO;
 use ZooShopDomain\ValueObjects\Title\TitleVO;
 use JsonSerializable;
@@ -26,21 +27,28 @@ class Product implements JsonSerializable
      */
     private $title;
 
+    /**
+     * @var CategoryVO $category
+     * @ORM\Column(name="category", type="category", length=100, nullable=false)
+     */
+    private $category;
+
 
     private $originalTitle;
     private $sku;
     private $brand;
-    private $category;
     private $metaTitle;
     private $metaDescription;
     private $metaKeyWords;
 
     public function __construct(
         IdVO $id,
-        TitleVO $title
+        TitleVO $title,
+        CategoryVO $category
     ) {
         $this->id = $id;
         $this->title = $title;
+        $this->category = $category;
     }
 
     /**
@@ -53,7 +61,8 @@ class Product implements JsonSerializable
         $valueObjects = $productDTO->generateValueObjects();
         return new self(
             $valueObjects[self::ID],
-            $valueObjects[self::TITLE]
+            $valueObjects[self::TITLE],
+            $valueObjects[self::CATEGORY]
         );
     }
 
@@ -61,6 +70,7 @@ class Product implements JsonSerializable
     {
         $valueObjects = $productDTO->generateValueObjects();
         $this->title = $valueObjects[self::TITLE];
+        $this->title = $valueObjects[self::CATEGORY];
     }
 
     /**
