@@ -7,7 +7,7 @@ class BrandVO
 {
     const ISLE_OF_DOGS = 'Isle Of Dogs';
 
-    const AVAILABLE = [
+    const AVAILABLE_BRANDS = [
         'ISLE_OF_DOGS' => self::ISLE_OF_DOGS
     ];
 }

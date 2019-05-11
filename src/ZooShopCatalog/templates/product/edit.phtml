@@ -3,23 +3,15 @@
 $editForm = $this->editForm;
 ?>
 <?=$this->form()->openTag($editForm); ?>
-<div class="form-group row">
-    <?=$this->formLabel($editForm->getTitle())?>
-    <div class="col-sm-8">
-        <?=$this->formInput($editForm->getTitle())?>
-    </div>
-    <?=$this->formElementErrors($editForm->getTitle()) ?>
-</div>
-<div class="form-group row">
-    <?=$this->formLabel($editForm->getCategory())?>
-    <div class="col-sm-8">
-        <?=$this->formSelect($editForm->getCategory())?>
-    </div>
-    <?=$this->formElementErrors()->setMessageOpenFormat('<div class="alert alert-warning" style="width: 100%;" role="alert">')
-        ->setMessageSeparatorString('</div><div class="alert alert-warning" style="width: 100%;" role="alert">')
-        ->setMessageCloseString('</div>')
-        ->render($editForm->getCategory()) ?>
-</div>
+<?=$this->partial('zoo-shop-app::partial/form/input-text', [
+        'formElement' => $editForm->getTitle()
+]) ?>
+<?=$this->partial('zoo-shop-app::partial/form/select', [
+        'formElement' => $editForm->getCategory()
+]) ?>
+<?=$this->partial('zoo-shop-app::partial/form/select', [
+        'formElement' => $editForm->getBrands()
+]) ?>
 <?=$this->formInput($editForm->getCsrf()) ?>
 <?=$this->formButton($editForm->getSubmit(), $editForm->getSubmitValue()) ?>
 <?=$this->form()->closeTag(); ?>

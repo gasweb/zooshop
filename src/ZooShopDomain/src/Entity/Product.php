@@ -19,6 +19,7 @@ class Product implements JsonSerializable
 
     const TITLE = 'title';
     const CATEGORY = 'category';
+    const BRAND = 'brand';
     const ID = 'id';
 
     /**

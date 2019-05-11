@@ -3,6 +3,7 @@ declare(strict_types = 1);
 
 namespace ZooShopCatalog\Product;
 
+use phpDocumentor\Reflection\DocBlock\Tags\See;
 use Zend\Form\Element\Csrf;
 use Zend\Form\Element\Select;
 use Zend\Form\Element\Submit;
@@ -12,6 +13,7 @@ use Zend\Hydrator\ClassMethodsHydrator;
 use ZooShopApp\ConfigProvider;
 use ZooShopCatalog\Product\Create\CreateFormInputFilter;
 use ZooShopDomain\Entity\Product;
+use ZooShopDomain\ValueObjects\Brand\BrandVO;
 use ZooShopDomain\ValueObjects\Category\CategoryVO;
 
 class AbstractManagementForm extends Form
@@ -40,6 +42,12 @@ class AbstractManagementForm extends Form
         'default' => 'CREATE_PRODUCT_FORM_CATEGORY_DEFAULT',
     ];
 
+    const BRAND = [
+        'name' => Product::BRAND,
+        'label' => 'CREATE_PRODUCT_FORM_BRAND_LABEL',
+        'default' => 'CREATE_PRODUCT_FORM_BRAND_DEFAULT',
+    ];
+
     const CSRF = [
         'name' => 'csrf'
     ];
@@ -56,6 +64,7 @@ class AbstractManagementForm extends Form
     {
         $this->addTitle();
         $this->addCategories();
+        $this->addBrands();
         $this->addCsrf();
         $this->addSubmit();
     }
@@ -103,6 +112,28 @@ class AbstractManagementForm extends Form
         );
     }
 
+    protected function addBrands() : void
+    {
+        $this->add(
+            [
+                'name' => self::BRAND['name'],
+                'type' => Select::class,
+                'options' => [
+                    'property' => Product::BRAND,
+                    'label' => self::BRAND['label'],
+                    'label_attributes' => [
+                        'class' => 'col-sm-4 col-form-label'
+                    ],
+                    'empty_option' => self::BRAND['default'],
+                    'value_options' => BrandVO::AVAILABLE_BRANDS
+                ],
+                'attributes' => [
+                    'class' => 'form-control',
+                ],
+            ]
+        );
+    }
+
     protected function addCsrf()
     {
         $this->add(
@@ -126,12 +157,17 @@ class AbstractManagementForm extends Form
 
     public function getTitle()
     {
-        return $this->get(Product::TITLE);
+        return $this->get(self::TITLE['name']);
     }
 
     public function getCategory()
     {
-        return $this->get(Product::CATEGORY);
+        return $this->get(self::CATEGORY['name']);
+    }
+
+    public function getBrands()
+    {
+        return $this->get(self::BRAND['name']);
     }
 
     public function getSubmit()

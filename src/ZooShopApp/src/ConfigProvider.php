@@ -64,6 +64,7 @@ class ConfigProvider
     {
         return [
             'paths' => [
+                'app-partial'    => [__DIR__ . '/../templates/partial'],
                 'zoo-shop-app'    => [__DIR__ . '/../templates/'],
                 'error'  => [__DIR__ . '/../templates/error'],
                 'layout' => [__DIR__ . '/../templates/layout'],

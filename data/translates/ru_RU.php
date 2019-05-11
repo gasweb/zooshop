@@ -15,4 +15,7 @@ return [
     'DOG_STYLING_CATEGORY' => 'Средства для укладки',
     'DOG_REPLASCENT_CATEGORY' => 'Дезодорант',
     'DOG_POWDER_CATEGORY' => 'Пудра',
+
+    'CREATE_PRODUCT_FORM_BRAND_LABEL' => 'Бренд',
+    'CREATE_PRODUCT_FORM_BRAND_DEFAULT' => 'Выберите бренд',
 ];
