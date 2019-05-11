@@ -1,27 +1,21 @@
 <?php
 declare(strict_types = 1);
 
-namespace ZooShopDomain\ValueObjects\Brand;
+namespace ZooShopDomain\ValueObjects\Sku;
 
-use JsonSerializable;
 use ZooShopDomain\Interfaces\IGet;
+use JsonSerializable;
 use Exception;
 
-class BrandVO implements IGet, JsonSerializable
+final class SkuVO implements IGet, JsonSerializable
 {
-    const NAME = 'brand';
+    const NAME = 'sku';
 
-    const ISLE_OF_DOGS = 'Isle Of Dogs';
+    private $sku;
 
-    const AVAILABLE_BRANDS = [
-        'ISLE_OF_DOGS' => self::ISLE_OF_DOGS
-    ];
-
-    private $brand;
-
-    public function __construct(?string $brand)
+    public function __construct(string $sku)
     {
-        $this->brand = $brand;
+        $this->sku = $sku;
     }
 
     /**
@@ -29,24 +23,24 @@ class BrandVO implements IGet, JsonSerializable
      */
     public function __toString() : string
     {
-        return (string) $this->brand;
+        return (string) $this->sku;
     }
 
     /**
-     * @param BrandVO $brand
+     * @param SkuVO $sku
      * @return bool
      */
-    public function equals(BrandVO $brand) : bool
+    public function equals(SkuVO $sku) : bool
     {
-        return $brand->get() === $this->brand;
+        return $sku->__toString() === $this->__toString();
     }
 
     /**
-     * @return string|null
+     * @return string
      */
     public function get()
     {
-        return $this->brand;
+        return $this->__toString();
     }
 
     /**
@@ -58,18 +52,18 @@ class BrandVO implements IGet, JsonSerializable
      */
     public function jsonSerialize()
     {
-        return $this->brand;
+        return $this->get();
     }
 
     /**
-     * @param string|null $brand
-     * @return BrandVO
+     * @param string $sku
+     * @return SkuVO
      * @throws Exception
      */
-    public static function create(?string $brand) : BrandVO
+    public static function create(string $sku) : SkuVO
     {
         try {
-            return new self($brand);
+            return new SkuVO($sku);
         } catch (Exception $exception) {
             throw $exception;
         }

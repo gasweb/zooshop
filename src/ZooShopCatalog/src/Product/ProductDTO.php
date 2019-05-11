@@ -4,21 +4,33 @@ declare(strict_types = 1);
 namespace ZooShopCatalog\Product;
 
 use ZooShopDomain\Entity\Product;
+use ZooShopDomain\ValueObjects\Brand\BrandVO;
 use ZooShopDomain\ValueObjects\Category\CategoryVO;
 use ZooShopDomain\ValueObjects\Id\IdVO;
+use ZooShopDomain\ValueObjects\OriginalTitle\OriginalTitleVO;
+use ZooShopDomain\ValueObjects\Sku\SkuVO;
 use ZooShopDomain\ValueObjects\Title\TitleVO;
 use Exception;
 
 class ProductDTO
 {
-    /** @var string $title */
-    private $title = null;
-
-    /** @var string $category */
-    private $category = null;
-
     /** @var IdVO $id */
     private $id;
+
+    /** @var string|null $title */
+    private $title = null;
+
+    /** @var null|string $originalTitle */
+    private $originalTitle = null;
+
+    /** @var string|null $category */
+    private $category = null;
+
+    /** @var string|null $brand */
+    private $brand = null;
+
+    /** @var null|string $sku */
+    private $sku = null;
 
     public function __construct(IdVO $id)
     {
@@ -35,7 +47,10 @@ class ProductDTO
             return [
                 Product::ID => $this->id,
                 Product::TITLE => TitleVO::create($this->title),
-                Product::CATEGORY => CategoryVO::create($this->category)
+                Product::CATEGORY => CategoryVO::create($this->category),
+                Product::BRAND => BrandVO::create($this->brand),
+                Product::ORIGINAL_TITLE => OriginalTitleVO::create($this->originalTitle),
+                Product::SKU => SkuVO::create($this->sku),
             ];
         } catch (Exception $exception) {
             throw $exception;
@@ -84,5 +99,59 @@ class ProductDTO
     public function getId() : IdVO
     {
         return $this->id;
+    }
+
+    /**
+     * @return string
+     */
+    public function getBrand(): ?string
+    {
+        return $this->brand;
+    }
+
+    /**
+     * @param string $brand
+     * @return ProductDTO
+     */
+    public function setBrand(string $brand): ProductDTO
+    {
+        $this->brand = $brand;
+        return $this;
+    }
+
+    /**
+     * @return string|null
+     */
+    public function getOriginalTitle(): ?string
+    {
+        return $this->originalTitle;
+    }
+
+    /**
+     * @param string|null $originalTitle
+     * @return ProductDTO
+     */
+    public function setOriginalTitle(?string $originalTitle): ProductDTO
+    {
+        $this->originalTitle = $originalTitle;
+        return $this;
+    }
+
+    /**
+     * @return string|null
+     */
+    public function getSku(): ?string
+    {
+        return $this->sku;
+    }
+
+    /**
+     * @param string|null $sku
+     * @return ProductDTO
+     */
+    public function setSku(?string $sku): ProductDTO
+    {
+        $this->sku = $sku;
+        return $this;
     }
 }

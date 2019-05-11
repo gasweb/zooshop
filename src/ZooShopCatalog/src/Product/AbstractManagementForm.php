@@ -28,12 +28,10 @@ class AbstractManagementForm extends Form
         'placeholder' => 'CREATE_PRODUCT_FORM_TITLE_PLACEHOLDER',
     ];
 
-    const SUBMIT = [
-        'name' => 'submit',
-        'attributes' => [
-            'class' => 'btn btn-outline-success',
-            'value' => 'SAVE_BUTTON',
-        ]
+    const ORIGINAL_TITLE = [
+        'name' => Product::ORIGINAL_TITLE,
+        'label' => 'CREATE_PRODUCT_FORM_ORIGINAL_TITLE_LABEL',
+        'placeholder' => 'CREATE_PRODUCT_FORM_ORIGINAL_TITLE_PLACEHOLDER',
     ];
 
     const CATEGORY = [
@@ -48,8 +46,22 @@ class AbstractManagementForm extends Form
         'default' => 'CREATE_PRODUCT_FORM_BRAND_DEFAULT',
     ];
 
+    const SKU = [
+        'name' => Product::SKU,
+        'label' => 'CREATE_PRODUCT_FORM_SKU_LABEL',
+        'placeholder' => 'CREATE_PRODUCT_FORM_SKU_PLACEHOLDER',
+    ];
+
     const CSRF = [
         'name' => 'csrf'
+    ];
+
+    const SUBMIT = [
+        'name' => 'submit',
+        'attributes' => [
+            'class' => 'btn btn-outline-success',
+            'value' => 'SAVE_BUTTON',
+        ]
     ];
 
     public function __construct($name = null, $options = [])
@@ -63,6 +75,8 @@ class AbstractManagementForm extends Form
     protected function addFormItems()
     {
         $this->addTitle();
+        $this->addOriginalTitle();
+        $this->addSku();
         $this->addCategories();
         $this->addBrands();
         $this->addCsrf();
@@ -86,6 +100,48 @@ class AbstractManagementForm extends Form
                 'autocomplete' => 'off',
                 'class' => 'form-control',
                 'id' => Product::TITLE
+            ],
+        ]);
+    }
+
+    protected function addOriginalTitle() : void
+    {
+        $this->add([
+            'name' => self::ORIGINAL_TITLE['name'],
+            'type' => Text::class,
+            'options' => [
+                'property' => Product::ORIGINAL_TITLE,
+                'label' => self::ORIGINAL_TITLE['label'],
+                'label_attributes' => [
+                    'class' => 'col-sm-4 col-form-label'
+                ],
+            ],
+            'attributes' => [
+                'placeholder' => self::ORIGINAL_TITLE['placeholder'],
+                'autocomplete' => 'off',
+                'class' => 'form-control',
+                'id' => Product::ORIGINAL_TITLE
+            ],
+        ]);
+    }
+
+    protected function addSku() : void
+    {
+        $this->add([
+            'name' => self::SKU['name'],
+            'type' => Text::class,
+            'options' => [
+                'property' => Product::SKU,
+                'label' => self::SKU['label'],
+                'label_attributes' => [
+                    'class' => 'col-sm-4 col-form-label'
+                ],
+            ],
+            'attributes' => [
+                'placeholder' => self::SKU['placeholder'],
+                'autocomplete' => 'off',
+                'class' => 'form-control',
+                'id' => Product::SKU
             ],
         ]);
     }
@@ -158,6 +214,16 @@ class AbstractManagementForm extends Form
     public function getTitle()
     {
         return $this->get(self::TITLE['name']);
+    }
+
+    public function getOriginalTitle()
+    {
+        return $this->get(self::ORIGINAL_TITLE['name']);
+    }
+
+    public function getSku()
+    {
+        return $this->get(self::SKU['name']);
     }
 
     public function getCategory()

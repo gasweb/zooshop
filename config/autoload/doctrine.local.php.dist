@@ -22,10 +22,12 @@ return [
             ],
         ],
         'types' => [
-                    'brand'  => \ZooShopDomain\ValueObjects\Brand\BrandType::class,
-                    'title' => \ZooShopDomain\ValueObjects\Title\TitleType::class,
-                    'uuid' => \ZooShopDomain\ValueObjects\Id\IdType::class,
-                    'category' => \ZooShopDomain\ValueObjects\Category\CategoryType::class,
+                   'brand'  =>             \ZooShopDomain\ValueObjects\Brand\BrandType::class,
+                   'title' =>              \ZooShopDomain\ValueObjects\Title\TitleType::class,
+                   'uuid' =>               \ZooShopDomain\ValueObjects\Id\IdType::class,
+                   'category' =>           \ZooShopDomain\ValueObjects\Category\CategoryType::class,
+                   'originalTitle' =>      \ZooShopDomain\ValueObjects\OriginalTitle\OriginalTitleType::class,
+                   'sku' =>                \ZooShopDomain\ValueObjects\Sku\SkuVO::class
                 ],
         'dbal' => [
             'mapping_types' => [

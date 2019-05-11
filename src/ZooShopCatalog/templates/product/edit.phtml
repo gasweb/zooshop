@@ -6,11 +6,17 @@ $editForm = $this->editForm;
 <?=$this->partial('zoo-shop-app::partial/form/input-text', [
         'formElement' => $editForm->getTitle()
 ]) ?>
+<?=$this->partial('zoo-shop-app::partial/form/input-text', [
+    'formElement' => $editForm->getOriginalTitle()
+]) ?>
 <?=$this->partial('zoo-shop-app::partial/form/select', [
         'formElement' => $editForm->getCategory()
 ]) ?>
 <?=$this->partial('zoo-shop-app::partial/form/select', [
         'formElement' => $editForm->getBrands()
+]) ?>
+<?=$this->partial('zoo-shop-app::partial/form/input-text', [
+    'formElement' => $editForm->getSku()
 ]) ?>
 <?=$this->formInput($editForm->getCsrf()) ?>
 <?=$this->formButton($editForm->getSubmit(), $editForm->getSubmitValue()) ?>

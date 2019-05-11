@@ -6,11 +6,17 @@ $createForm = $this->createForm;
 <?=$this->partial('zoo-shop-app::partial/form/input-text', [
     'formElement' => $createForm->getTitle()
 ]) ?>
+<?=$this->partial('zoo-shop-app::partial/form/input-text', [
+    'formElement' => $createForm->getOriginalTitle()
+]) ?>
 <?=$this->partial('zoo-shop-app::partial/form/select', [
     'formElement' => $createForm->getCategory()
 ]) ?>
 <?=$this->partial('zoo-shop-app::partial/form/select', [
     'formElement' => $createForm->getBrands()
+]) ?>
+<?=$this->partial('zoo-shop-app::partial/form/input-text', [
+    'formElement' => $createForm->getSku()
 ]) ?>
 <?=$this->formInput($createForm->getCsrf()) ?>
 <?=$this->formButton($createForm->getSubmit(), $createForm->getSubmitValue()) ?>

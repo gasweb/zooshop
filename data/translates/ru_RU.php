@@ -18,4 +18,9 @@ return [
 
     'CREATE_PRODUCT_FORM_BRAND_LABEL' => 'Бренд',
     'CREATE_PRODUCT_FORM_BRAND_DEFAULT' => 'Выберите бренд',
+    'CREATE_PRODUCT_FORM_ORIGINAL_TITLE_LABEL' => 'Оригинальное название',
+    'CREATE_PRODUCT_FORM_ORIGINAL_TITLE_PLACEHOLDER' => 'Введите оригинальное название',
+    'CREATE_PRODUCT_FORM_SKU_LABEL' => 'Артикул',
+    'CREATE_PRODUCT_FORM_SKU_PLACEHOLDER' => 'Введите артикул',
+
 ];
