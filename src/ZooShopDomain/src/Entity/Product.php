@@ -70,7 +70,7 @@ class Product implements JsonSerializable
     {
         $valueObjects = $productDTO->generateValueObjects();
         $this->title = $valueObjects[self::TITLE];
-        $this->title = $valueObjects[self::CATEGORY];
+        $this->category = $valueObjects[self::CATEGORY];
     }
 
     /**
@@ -90,13 +90,12 @@ class Product implements JsonSerializable
     }
 
     /**
-     * @param Product $product
      * @return ProductDTO
      */
     public function createDTO() : ProductDTO
     {
         $productDTO = new ProductDTO(
-            IdVO::create($this->id)
+            $this->id
         );
         $productDTO->setTitle($this->title->__toString());
         $productDTO->setCategory($this->category->__toString());
