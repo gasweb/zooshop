@@ -43,6 +43,7 @@ class IdVO implements JsonSerializable, IGet
     /**
      * @param null $id
      * @return IdVO
+     * @throws Exception
      */
     public static function create($id = null) : IdVO
     {
