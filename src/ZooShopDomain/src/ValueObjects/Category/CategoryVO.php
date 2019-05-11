@@ -10,7 +10,18 @@ class CategoryVO implements JsonSerializable
     private $category;
 
     const AVAILABLE_CATEGORIES = [
-        'DOG_COSMETICS' => 'DOG_COSMETICS_CATEGORY'
+        'DOG_COSMETICS' => [
+            'label' => 'DOG_COSMETICS_CATEGORY',
+            'options' => [
+                'DOG_SHAMPOO' => 'DOG_SHAMPOO_CATEGORY',
+                'DOG_CONDITIONER' => 'DOG_CONDITIONER_CATEGORY',
+                'DOG_SPRAY' => 'DOG_SPRAY_CATEGORY',
+                'DOG_SUPPLEMENTS' => 'DOG_SUPPLEMENTS_CATEGORY',
+                'DOG_STYLING' => 'DOG_STYLING_CATEGORY',
+                'DOG_REPLASCENT' => 'DOG_REPLASCENT_CATEGORY',
+                'DOG_POWDER' => 'DOG_POWDER_CATEGORY',
+            ]
+        ]
     ];
 
     public function __construct($category)
