@@ -10,6 +10,10 @@ use ZooShopDomain\ValueObjects\Brand\BrandVO;
 use ZooShopDomain\ValueObjects\Category\CategoryVO;
 use ZooShopDomain\ValueObjects\Description\DescriptionVO;
 use ZooShopDomain\ValueObjects\Id\IdVO;
+use ZooShopDomain\ValueObjects\Meta\Description\MetaDescriptionVO;
+use ZooShopDomain\ValueObjects\Meta\Keywords\MetaKeywordsVO;
+use ZooShopDomain\ValueObjects\Meta\MetaVO;
+use ZooShopDomain\ValueObjects\Meta\Title\MetaTitleVO;
 use ZooShopDomain\ValueObjects\OriginalTitle\OriginalTitleVO;
 use ZooShopDomain\ValueObjects\Sku\SkuVO;
 use ZooShopDomain\ValueObjects\Slug\SlugVO;
@@ -106,17 +110,15 @@ class Product implements JsonSerializable
         $this->updatedAt = new DateTime('now');
     }
 
-    private $metaTitle;
-    private $metaDescription;
-    private $metaKeyWords;
-
     public function __construct(
         IdVO $id,
         TitleVO $title,
         OriginalTitleVO $originalTitle,
         CategoryVO $category,
         BrandVO $brand,
-        SkuVO $sku
+        SkuVO $sku,
+        DescriptionVO $description,
+        SlugVO $slug
     ) {
         $this->id = $id;
         $this->title = $title;
@@ -124,6 +126,16 @@ class Product implements JsonSerializable
         $this->category = $category;
         $this->brand = $brand;
         $this->sku = $sku;
+        $this->description = $description;
+        $this->slug = $slug;
+
+        $this->meta = new Meta(
+            new MetaVO(
+                new MetaTitleVO(null),
+                new MetaDescriptionVO(null),
+                new MetaKeywordsVO(null)
+            )
+        );
     }
 
     /**
@@ -140,7 +152,9 @@ class Product implements JsonSerializable
             $valueObjects[self::ORIGINAL_TITLE],
             $valueObjects[self::CATEGORY],
             $valueObjects[self::BRAND],
-            $valueObjects[self::SKU]
+            $valueObjects[self::SKU],
+            $valueObjects[self::DESCRIPTION],
+            $valueObjects[self::SLUG]
         );
     }
 
@@ -169,7 +183,9 @@ class Product implements JsonSerializable
             self::ORIGINAL_TITLE => $this->originalTitle,
             self::CATEGORY => $this->category,
             self::BRAND => $this->brand,
-            self::SKU => $this->sku
+            self::SKU => $this->sku,
+            self::DESCRIPTION => $this->description,
+            self::SLUG => $this->slug
         ];
     }
 
@@ -185,7 +201,9 @@ class Product implements JsonSerializable
             ->setCategory($this->category->__toString())
             ->setOriginalTitle($this->originalTitle->__toString())
             ->setBrand($this->brand->get())
-            ->setSku($this->sku->get());
+            ->setSku($this->sku->get())
+            ->setDescription($this->description->get())
+            ->setSlug($this->slug->get());
         return $productDTO;
     }
 }

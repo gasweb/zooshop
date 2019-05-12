@@ -6,6 +6,7 @@ namespace ZooShopDomain\Entity\Embeddable;
 use Doctrine\ORM\Mapping as ORM;
 use ZooShopDomain\ValueObjects\Meta\Description\MetaDescriptionVO;
 use ZooShopDomain\ValueObjects\Meta\Keywords\MetaKeywordsVO;
+use ZooShopDomain\ValueObjects\Meta\MetaVO;
 use ZooShopDomain\ValueObjects\Meta\Title\MetaTitleVO;
 
 /**
@@ -18,6 +19,13 @@ class Meta
     const META_TITLE = 'title';
     const META_DESCRIPTION = 'description';
     const META_KEYWORDS = 'keywords';
+
+    public function __construct(MetaVO $meta)
+    {
+        $this->metaTitle = $meta->title();
+        $this->metaDescription = $meta->description();
+        $this->metaKeywords = $meta->keywords();
+    }
 
     /**
      * @var MetaTitleVO $metaTitle

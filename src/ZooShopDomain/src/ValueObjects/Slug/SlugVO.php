@@ -4,8 +4,9 @@ declare(strict_types = 1);
 namespace ZooShopDomain\ValueObjects\Slug;
 
 use JsonSerializable;
+use ZooShopDomain\Interfaces\IGet;
 
-class SlugVO implements JsonSerializable
+class SlugVO implements JsonSerializable, IGet
 {
     const NAME = 'slug';
 
@@ -59,5 +60,10 @@ class SlugVO implements JsonSerializable
     public function jsonSerialize()
     {
         return $this->__toString();
+    }
+
+    public function get()
+    {
+        return $this->slug;
     }
 }

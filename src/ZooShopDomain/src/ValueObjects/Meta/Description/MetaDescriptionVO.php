@@ -8,6 +8,8 @@ use ZooShopDomain\Interfaces\IGet;
 
 class MetaDescriptionVO implements IGet, JsonSerializable
 {
+    const NAME = 'meta_description';
+
     /** @var string $description */
     private $description = null;
 

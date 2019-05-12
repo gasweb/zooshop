@@ -6,9 +6,11 @@ namespace ZooShopCatalog\Product;
 use ZooShopDomain\Entity\Product;
 use ZooShopDomain\ValueObjects\Brand\BrandVO;
 use ZooShopDomain\ValueObjects\Category\CategoryVO;
+use ZooShopDomain\ValueObjects\Description\DescriptionVO;
 use ZooShopDomain\ValueObjects\Id\IdVO;
 use ZooShopDomain\ValueObjects\OriginalTitle\OriginalTitleVO;
 use ZooShopDomain\ValueObjects\Sku\SkuVO;
+use ZooShopDomain\ValueObjects\Slug\SlugVO;
 use ZooShopDomain\ValueObjects\Title\TitleVO;
 use Exception;
 
@@ -32,6 +34,12 @@ class ProductDTO
     /** @var null|string $sku */
     private $sku = null;
 
+    /** @var null|string $description */
+    private $description = null;
+
+    /** @var null|string $slug */
+    private $slug = null;
+
     public function __construct(IdVO $id)
     {
         $this->id = $id;
@@ -51,6 +59,8 @@ class ProductDTO
                 Product::BRAND => BrandVO::create($this->brand),
                 Product::ORIGINAL_TITLE => OriginalTitleVO::create($this->originalTitle),
                 Product::SKU => SkuVO::create($this->sku),
+                Product::DESCRIPTION => DescriptionVO::create($this->description),
+                Product::SLUG => SlugVO::create($this->slug),
             ];
         } catch (Exception $exception) {
             throw $exception;
@@ -152,6 +162,42 @@ class ProductDTO
     public function setSku(?string $sku): ProductDTO
     {
         $this->sku = $sku;
+        return $this;
+    }
+
+    /**
+     * @return string|null
+     */
+    public function getDescription(): ?string
+    {
+        return $this->description;
+    }
+
+    /**
+     * @param string|null $description
+     * @return ProductDTO
+     */
+    public function setDescription(?string $description): ProductDTO
+    {
+        $this->description = $description;
+        return $this;
+    }
+
+    /**
+     * @return string|null
+     */
+    public function getSlug(): ?string
+    {
+        return $this->slug;
+    }
+
+    /**
+     * @param string|null $slug
+     * @return ProductDTO
+     */
+    public function setSlug(?string $slug): ProductDTO
+    {
+        $this->slug = $slug;
         return $this;
     }
 }

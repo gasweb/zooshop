@@ -6,6 +6,7 @@ namespace ZooShopDomain\ValueObjects\Description;
 use Doctrine\DBAL\Platforms\AbstractPlatform;
 use Doctrine\DBAL\Types\Type;
 use Exception;
+use ZooShopDomain\Entity\Product;
 
 class DescriptionType extends Type
 {
@@ -57,6 +58,6 @@ class DescriptionType extends Type
      */
     public function getName()
     {
-        return DescriptionVO::NAME;
+        return Product::DESCRIPTION;
     }
 }

@@ -8,6 +8,8 @@ use ZooShopDomain\Interfaces\IGet;
 
 class MetaKeywordsVO implements IGet, JsonSerializable
 {
+    const NAME = 'meta_keywords';
+
     /** @var string $keywords */
     private $keywords = null;
 
