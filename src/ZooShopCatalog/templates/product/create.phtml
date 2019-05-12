@@ -24,6 +24,18 @@ $createForm = $this->createForm;
 <?=$this->partial('zoo-shop-app::partial/form/textarea', [
     'formElement' => $createForm->getDescription()
 ]) ?>
+
+
+<?=$this->partial('zoo-shop-app::partial/form/input-text', [
+    'formElement' => $createForm->getMetaTitle()
+]) ?>
+<?=$this->partial('zoo-shop-app::partial/form/textarea', [
+    'formElement' => $createForm->getMetaDescription()
+]) ?>
+<?=$this->partial('zoo-shop-app::partial/form/input-text', [
+    'formElement' => $createForm->getMetaKeywords()
+]) ?>
+
 <?=$this->formInput($createForm->getCsrf()) ?>
 <?=$this->formButton($createForm->getSubmit(), $createForm->getSubmitValue()) ?>
 <?=$this->form()->closeTag(); ?>

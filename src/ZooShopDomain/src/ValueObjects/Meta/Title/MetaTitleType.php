@@ -5,11 +5,12 @@ namespace ZooShopDomain\ValueObjects\Meta\Title;
 
 use Doctrine\DBAL\Platforms\AbstractPlatform;
 use Doctrine\DBAL\Types\Type;
-use ZooShopDomain\Entity\Embeddable\Meta;
 use Exception;
 
 class MetaTitleType extends Type
 {
+
+    const COLUMN_NAME = 'title';
 
     /**
      * Gets the SQL declaration snippet for a field of this type.
@@ -58,6 +59,6 @@ class MetaTitleType extends Type
      */
     public function getName()
     {
-        return Meta::META_TITLE;
+        return self::COLUMN_NAME;
     }
 }

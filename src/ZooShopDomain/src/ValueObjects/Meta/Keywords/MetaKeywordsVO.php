@@ -3,12 +3,13 @@ declare(strict_types = 1);
 
 namespace ZooShopDomain\ValueObjects\Meta\Keywords;
 
+use Exception;
 use JsonSerializable;
 use ZooShopDomain\Interfaces\IGet;
 
 class MetaKeywordsVO implements IGet, JsonSerializable
 {
-    const NAME = 'meta_keywords';
+    const NAME = 'keywords';
 
     /** @var string $keywords */
     private $keywords = null;
@@ -57,5 +58,19 @@ class MetaKeywordsVO implements IGet, JsonSerializable
     public function equals(MetaKeywordsVO $metaKeywords) : bool
     {
         return $metaKeywords->get() === $this->get();
+    }
+
+    /**
+     * @param string|null $title
+     * @return MetaKeywordsVO
+     * @throws Exception
+     */
+    public static function create(?string $keywords)
+    {
+        try {
+            return new self($keywords);
+        } catch (Exception $exception) {
+            throw $exception;
+        }
     }
 }

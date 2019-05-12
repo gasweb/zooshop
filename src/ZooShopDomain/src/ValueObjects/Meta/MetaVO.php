@@ -71,4 +71,27 @@ class MetaVO implements JsonSerializable
             MetaKeywordsVO::NAME => $this->keywords()->jsonSerialize(),
         ];
     }
+
+    /**
+     * @param MetaTitleVO $metaTitle
+     * @param MetaDescriptionVO $metaDescription
+     * @param MetaKeywordsVO $metaKeywords
+     * @return MetaVO
+     * @throws Exception
+     */
+    public static function create(
+        MetaTitleVO $metaTitle,
+        MetaDescriptionVO $metaDescription,
+        MetaKeywordsVO $metaKeywords
+    ) {
+        try {
+            return new self(
+                $metaTitle,
+                $metaDescription,
+                $metaKeywords
+            );
+        } catch (Exception $exception) {
+            throw $exception;
+        }
+    }
 }

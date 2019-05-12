@@ -10,6 +10,7 @@ use Exception;
 
 class MetaDescriptionType extends Type
 {
+    const COLUMN_NAME = 'description';
 
     /**
      * Gets the SQL declaration snippet for a field of this type.
@@ -58,6 +59,6 @@ class MetaDescriptionType extends Type
      */
     public function getName()
     {
-        return Meta::META_DESCRIPTION;
+        return self::COLUMN_NAME;
     }
 }

@@ -24,6 +24,17 @@ $editForm = $this->editForm;
 <?=$this->partial('zoo-shop-app::partial/form/textarea', [
     'formElement' => $editForm->getDescription()
 ]) ?>
+
+<?=$this->partial('zoo-shop-app::partial/form/input-text', [
+    'formElement' => $editForm->getMetaTitle()
+]) ?>
+<?=$this->partial('zoo-shop-app::partial/form/textarea', [
+    'formElement' => $editForm->getMetaDescription()
+]) ?>
+<?=$this->partial('zoo-shop-app::partial/form/input-text', [
+    'formElement' => $editForm->getMetaKeywords()
+]) ?>
+
 <?=$this->formInput($editForm->getCsrf()) ?>
 <?=$this->formButton($editForm->getSubmit(), $editForm->getSubmitValue()) ?>
 <?=$this->form()->closeTag(); ?>

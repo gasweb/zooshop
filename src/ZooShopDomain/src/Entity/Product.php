@@ -118,7 +118,8 @@ class Product implements JsonSerializable
         BrandVO $brand,
         SkuVO $sku,
         DescriptionVO $description,
-        SlugVO $slug
+        SlugVO $slug,
+        Meta $meta
     ) {
         $this->id = $id;
         $this->title = $title;
@@ -128,14 +129,7 @@ class Product implements JsonSerializable
         $this->sku = $sku;
         $this->description = $description;
         $this->slug = $slug;
-
-        $this->meta = new Meta(
-            new MetaVO(
-                new MetaTitleVO(null),
-                new MetaDescriptionVO(null),
-                new MetaKeywordsVO(null)
-            )
-        );
+        $this->meta = $meta;
     }
 
     /**
@@ -154,7 +148,8 @@ class Product implements JsonSerializable
             $valueObjects[self::BRAND],
             $valueObjects[self::SKU],
             $valueObjects[self::DESCRIPTION],
-            $valueObjects[self::SLUG]
+            $valueObjects[self::SLUG],
+            $valueObjects[Meta::NAME]
         );
     }
 

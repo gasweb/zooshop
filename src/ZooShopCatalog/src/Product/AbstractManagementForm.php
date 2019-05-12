@@ -7,9 +7,11 @@ use Zend\Form\Element\Csrf;
 use Zend\Form\Element\Select;
 use Zend\Form\Element\Submit;
 use Zend\Form\Element\Text;
+use Zend\Form\Element\Textarea;
 use Zend\Form\Form;
 use Zend\Hydrator\ClassMethodsHydrator;
 use ZooShopCatalog\Product\Create\CreateFormInputFilter;
+use ZooShopDomain\Entity\Embeddable\Meta;
 use ZooShopDomain\Entity\Product;
 use ZooShopDomain\ValueObjects\Brand\BrandVO;
 use ZooShopDomain\ValueObjects\Category\CategoryVO;
@@ -81,6 +83,27 @@ class AbstractManagementForm extends Form
         ]
     ];
 
+    const META = [
+        Meta::META_TITLE => [
+            'name' => Meta::META_TITLE,
+            'id' => Meta::META_TITLE,
+            'label' => 'CREATE_PRODUCT_FORM_META_TITLE_LABEL',
+            'placeholder' => 'CREATE_PRODUCT_FORM_META_TITLE_PLACEHOLDER',
+        ],
+        Meta::META_DESCRIPTION => [
+            'name' => Meta::META_DESCRIPTION,
+            'id' => Meta::META_DESCRIPTION,
+            'label' => 'CREATE_PRODUCT_FORM_META_DESCRIPTION_LABEL',
+            'placeholder' => 'CREATE_PRODUCT_FORM_META_DESCRIPTION_PLACEHOLDER',
+        ],
+        Meta::META_KEYWORDS => [
+            'name' => Meta::META_KEYWORDS,
+            'id' => Meta::META_KEYWORDS,
+            'label' => 'CREATE_PRODUCT_FORM_META_KEYWORDS_LABEL',
+            'placeholder' => 'CREATE_PRODUCT_FORM_META_KEYWORDS_PLACEHOLDER',
+        ]
+    ];
+
     public function __construct($name = null, $options = [])
     {
         parent::__construct($name, $options);
@@ -98,8 +121,70 @@ class AbstractManagementForm extends Form
         $this->addBrands();
         $this->addSlug();
         $this->addDescription();
+        $this->addMetaTitle();
+        $this->addMetaDescription();
+        $this->addMetaKeywords();
         $this->addCsrf();
         $this->addSubmit();
+    }
+
+    protected function addMetaTitle() : void
+    {
+        $this->add([
+            'name' => self::META[Meta::META_TITLE]['name'],
+            'type' => Text::class,
+            'options' => [
+                'label' => self::META[Meta::META_TITLE]['label'],
+                'label_attributes' => [
+                    'class' => 'col-sm-4 col-form-label'
+                ],
+            ],
+            'attributes' => [
+                'placeholder' => self::META[Meta::META_TITLE]['placeholder'],
+                'autocomplete' => 'off',
+                'class' => 'form-control',
+                'id' => self::META[Meta::META_TITLE]['id']
+            ],
+        ]);
+    }
+
+    protected function addMetaDescription() : void
+    {
+        $this->add([
+            'name' => self::META[Meta::META_DESCRIPTION]['name'],
+            'type' => Textarea::class,
+            'options' => [
+                'label' => self::META[Meta::META_DESCRIPTION]['label'],
+                'label_attributes' => [
+                    'class' => 'col-sm-4 col-form-label'
+                ],
+            ],
+            'attributes' => [
+                'placeholder' => self::META[Meta::META_DESCRIPTION]['placeholder'],
+                'class' => 'form-control',
+                'id' => self::META[Meta::META_DESCRIPTION]['id']
+            ],
+        ]);
+    }
+
+    protected function addMetaKeywords() : void
+    {
+        $this->add([
+            'name' => self::META[Meta::META_KEYWORDS]['name'],
+            'type' => Text::class,
+            'options' => [
+                'label' => self::META[Meta::META_KEYWORDS]['label'],
+                'label_attributes' => [
+                    'class' => 'col-sm-4 col-form-label'
+                ],
+            ],
+            'attributes' => [
+                'placeholder' => self::META[Meta::META_KEYWORDS]['placeholder'],
+                'autocomplete' => 'off',
+                'class' => 'form-control',
+                'id' => self::META[Meta::META_KEYWORDS]['id']
+            ],
+        ]);
     }
 
     protected function addTitle() : void
@@ -298,6 +383,21 @@ class AbstractManagementForm extends Form
     public function getSlug()
     {
         return $this->get(self::SLUG['name']);
+    }
+
+    public function getMetaTitle()
+    {
+        return $this->get(self::META[Meta::META_TITLE]['name']);
+    }
+
+    public function getMetaDescription()
+    {
+        return $this->get(self::META[Meta::META_DESCRIPTION]['name']);
+    }
+
+    public function getMetaKeywords()
+    {
+        return $this->get(self::META[Meta::META_KEYWORDS]['name']);
     }
 
     public function getSubmit()

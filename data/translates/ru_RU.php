@@ -27,5 +27,12 @@ return [
     'CREATE_PRODUCT_FORM_SLUG_LABEL' => 'Ссылка на продукт',
     'CREATE_PRODUCT_FORM_SLUG_PLACEHOLDER' => 'Напишите ссылку',
     'ADD_NEW_PRODUCT' => 'Добавить продукт',
+    'CREATE_PRODUCT_FORM_META_TITLE_LABEL' => 'Заголовок страницы',
+    'CREATE_PRODUCT_FORM_META_TITLE_PLACEHOLDER' => 'Введите заголовок страницы',
+    'CREATE_PRODUCT_FORM_META_DESCRIPTION_LABEL' => 'Описание страницы',
+    'CREATE_PRODUCT_FORM_META_DESCRIPTION_PLACEHOLDER' => 'Введите описание страницы',
+    'CREATE_PRODUCT_FORM_META_KEYWORDS_LABEL' => 'Ключевые слова страницы',
+    'CREATE_PRODUCT_FORM_META_KEYWORDS_PLACEHOLDER' => 'Введите ключевые слова страницы',
+    '' => '',
 
 ];

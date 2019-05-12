@@ -3,12 +3,13 @@ declare(strict_types = 1);
 
 namespace ZooShopDomain\ValueObjects\Meta\Title;
 
+use Exception;
 use JsonSerializable;
 use ZooShopDomain\Interfaces\IGet;
 
 class MetaTitleVO implements IGet, JsonSerializable
 {
-    const NAME = 'meta_title';
+    const NAME = 'title';
 
     /** @var string $title */
     private $title = null;
@@ -57,5 +58,19 @@ class MetaTitleVO implements IGet, JsonSerializable
     public function equals(MetaTitleVO $metaTitle) : bool
     {
         return $metaTitle->get() === $this->get();
+    }
+
+    /**
+     * @param string|null $title
+     * @return MetaTitleVO
+     * @throws Exception
+     */
+    public static function create(?string $title)
+    {
+        try {
+            return new self($title);
+        } catch (Exception $exception) {
+            throw $exception;
+        }
     }
 }

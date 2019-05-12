@@ -3,11 +3,16 @@ declare(strict_types = 1);
 
 namespace ZooShopCatalog\Product;
 
+use ZooShopDomain\Entity\Embeddable\Meta;
 use ZooShopDomain\Entity\Product;
 use ZooShopDomain\ValueObjects\Brand\BrandVO;
 use ZooShopDomain\ValueObjects\Category\CategoryVO;
 use ZooShopDomain\ValueObjects\Description\DescriptionVO;
 use ZooShopDomain\ValueObjects\Id\IdVO;
+use ZooShopDomain\ValueObjects\Meta\Description\MetaDescriptionVO;
+use ZooShopDomain\ValueObjects\Meta\Keywords\MetaKeywordsVO;
+use ZooShopDomain\ValueObjects\Meta\MetaVO;
+use ZooShopDomain\ValueObjects\Meta\Title\MetaTitleVO;
 use ZooShopDomain\ValueObjects\OriginalTitle\OriginalTitleVO;
 use ZooShopDomain\ValueObjects\Sku\SkuVO;
 use ZooShopDomain\ValueObjects\Slug\SlugVO;
@@ -40,6 +45,15 @@ class ProductDTO
     /** @var null|string $slug */
     private $slug = null;
 
+    /** @var string|null $metaTitle */
+    private $metaTitle = null;
+
+    /** @var string|null $metaDescription */
+    private $metaDescription = null;
+
+    /** @var string|null $metaKeywords */
+    private $metaKeywords = null;
+
     public function __construct(IdVO $id)
     {
         $this->id = $id;
@@ -61,6 +75,13 @@ class ProductDTO
                 Product::SKU => SkuVO::create($this->sku),
                 Product::DESCRIPTION => DescriptionVO::create($this->description),
                 Product::SLUG => SlugVO::create($this->slug),
+                Meta::NAME => new Meta(
+                    MetaVO::create(
+                        MetaTitleVO::create($this->metaTitle),
+                        MetaDescriptionVO::create($this->metaDescription),
+                        MetaKeywordsVO::create($this->metaKeywords)
+                    )
+                )
             ];
         } catch (Exception $exception) {
             throw $exception;
@@ -198,6 +219,60 @@ class ProductDTO
     public function setSlug(?string $slug): ProductDTO
     {
         $this->slug = $slug;
+        return $this;
+    }
+
+    /**
+     * @return string|null
+     */
+    public function getMetaTitle(): ?string
+    {
+        return $this->metaTitle;
+    }
+
+    /**
+     * @param string|null $metaTitle
+     * @return ProductDTO
+     */
+    public function setMetaTitle(?string $metaTitle): ProductDTO
+    {
+        $this->metaTitle = $metaTitle;
+        return $this;
+    }
+
+    /**
+     * @return string|null
+     */
+    public function getMetaDescription(): ?string
+    {
+        return $this->metaDescription;
+    }
+
+    /**
+     * @param string|null $metaDescription
+     * @return ProductDTO
+     */
+    public function setMetaDescription(?string $metaDescription): ProductDTO
+    {
+        $this->metaDescription = $metaDescription;
+        return $this;
+    }
+
+    /**
+     * @return string|null
+     */
+    public function getMetaKeywords(): ?string
+    {
+        return $this->metaKeywords;
+    }
+
+    /**
+     * @param string|null $metaKeywords
+     * @return ProductDTO
+     */
+    public function setMetaKeywords(?string $metaKeywords): ProductDTO
+    {
+        $this->metaKeywords = $metaKeywords;
         return $this;
     }
 }
