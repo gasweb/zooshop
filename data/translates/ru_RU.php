@@ -22,5 +22,6 @@ return [
     'CREATE_PRODUCT_FORM_ORIGINAL_TITLE_PLACEHOLDER' => 'Введите оригинальное название',
     'CREATE_PRODUCT_FORM_SKU_LABEL' => 'Артикул',
     'CREATE_PRODUCT_FORM_SKU_PLACEHOLDER' => 'Введите артикул',
+    'ADD_NEW_PRODUCT' => 'Добавить продукт',
 
 ];
