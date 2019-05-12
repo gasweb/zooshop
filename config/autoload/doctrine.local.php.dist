@@ -30,6 +30,9 @@ return [
                    'sku' =>                \ZooShopDomain\ValueObjects\Sku\SkuVO::class,
                    'description' =>        \ZooShopDomain\ValueObjects\Description\DescriptionType::class,
                    'slug' =>               \ZooShopDomain\ValueObjects\Slug\SlugType::class
+                   'metaTitle' =>         \ZooShopDomain\ValueObjects\Meta\Title\MetaTitleType::class,
+                   'metaDescription' =>   \ZooShopDomain\ValueObjects\Meta\Description\MetaDescriptionType::class,
+                   'metaKeywords' =>      \ZooShopDomain\ValueObjects\Meta\Keywords\MetaKeywordsType::class
                 ],
         'dbal' => [
             'mapping_types' => [

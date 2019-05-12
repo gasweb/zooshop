@@ -4,6 +4,7 @@ namespace ZooShopDomain\Entity;
 use DateTime;
 use Doctrine\ORM\Mapping as ORM;
 use ZooShopCatalog\Product\ProductDTO;
+use ZooShopDomain\Entity\Embeddable\Meta;
 use ZooShopDomain\Entity\Traits\EntityUuidTrait;
 use ZooShopDomain\ValueObjects\Brand\BrandVO;
 use ZooShopDomain\ValueObjects\Category\CategoryVO;
@@ -74,6 +75,12 @@ class Product implements JsonSerializable
      * @ORM\Column(name="slug", type="slug", length=100, nullable=true)
      */
     private $slug;
+
+    /**
+     * @var Meta $meta
+     * @ORM\Embedded(class="ZooShopDomain\Entity\Embeddable\Meta")
+     */
+    private $meta;
 
     /**
      * @var DateTime
