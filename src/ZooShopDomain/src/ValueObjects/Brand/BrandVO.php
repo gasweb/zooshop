@@ -12,9 +12,29 @@ class BrandVO implements IGet, JsonSerializable
     const NAME = 'brand';
 
     const ISLE_OF_DOGS = 'Isle Of Dogs';
+    const PLUSH_PUPPY = 'Plush Puppy';
+    const JEROB = 'Jerob';
+    const FOR_MY_DOGS = 'For My Dogs';
+    const IS_PET = 'IS PET';
+    const DOBAZ = 'DOBAZ';
+    const CHRISTIAN_AUDIGIER = 'Christian Audigier';
+    const GUARDIAN_GEAR = 'Guardian Gear';
+    const TAI_CHI_PET = 'Tai Chi Pet';
+    const SCANDICAL = 'Scandical';
+    const ANGELS_EYES = 'Angels\' Eyes';
 
     const AVAILABLE_BRANDS = [
-        'ISLE_OF_DOGS' => self::ISLE_OF_DOGS
+        'ISLE_OF_DOGS' => self::ISLE_OF_DOGS,
+        'PLUSH_PUPPY' => self::PLUSH_PUPPY,
+        'JEROB' => self::JEROB,
+        'FOR_MY_DOGS' => self::FOR_MY_DOGS,
+        'IS_PET' => self::IS_PET,
+        'DOBAZ' => self::DOBAZ,
+        'CHRISTIAN_AUDIGIER' => self::CHRISTIAN_AUDIGIER,
+        'GUARDIAN_GEAR' => self::GUARDIAN_GEAR,
+        'TAI_CHI_PET' => self::TAI_CHI_PET,
+        'SCANDICAL' => self::SCANDICAL,
+        'ANGELS_EYES' => self::ANGELS_EYES,
     ];
 
     private $brand;

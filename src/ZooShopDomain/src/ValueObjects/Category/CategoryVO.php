@@ -21,6 +21,22 @@ class CategoryVO implements JsonSerializable
                 'DOG_REPLASCENT' => 'DOG_REPLASCENT_CATEGORY',
                 'DOG_POWDER' => 'DOG_POWDER_CATEGORY',
             ]
+        ],
+        'DOG_CLOTHES' => [
+            'label' => 'DOG_CLOTHES_CATEGORY',
+            'options' => [
+                'DOG_RAINCOATS' => 'DOG_RAINCOATS_CATEGORY',
+                'DOG_JUMPSUITS' => 'DOG_JUMPSUITS_CATEGORY',
+                'DOG_JUMPSUITS_FOR_CORGI' => 'DOG_JUMPSUITS_FOR_CORGI_CATEGORY',
+                'DOG_JUMPSUITS_FOR_DACHSHUNDS' => 'DOG_JUMPSUITS_FOR_DACHSHUNDS_CATEGORY',
+                'DOG_ANTHERS' => 'DOG_ANTHERS_CATEGORY',
+                'DOG_WARM_OVERALLS' => 'DOG_WARM_OVERALLS_CATEGORY',
+                'DOG_SHOES_FOR_DOGS' => 'DOG_SHOES_FOR_DOGS_CATEGORY',
+                'DOG_JACKETS' => 'DOG_JACKETS_CATEGORY',
+                'DOG_VESTS' => 'DOG_VESTS_CATEGORY',
+                'DOG_MIKE' => 'DOG_MIKE_CATEGORY',
+                'DOG_SUITS' => 'DOG_SUITS_CATEGORY'
+            ]
         ]
     ];
 
