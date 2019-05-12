@@ -27,7 +27,9 @@ return [
                    'uuid' =>               \ZooShopDomain\ValueObjects\Id\IdType::class,
                    'category' =>           \ZooShopDomain\ValueObjects\Category\CategoryType::class,
                    'originalTitle' =>      \ZooShopDomain\ValueObjects\OriginalTitle\OriginalTitleType::class,
-                   'sku' =>                \ZooShopDomain\ValueObjects\Sku\SkuVO::class
+                   'sku' =>                \ZooShopDomain\ValueObjects\Sku\SkuVO::class,
+                   'description' =>        \ZooShopDomain\ValueObjects\Description\DescriptionType::class,
+                   'slug' =>               \ZooShopDomain\ValueObjects\Slug\SlugType::class
                 ],
         'dbal' => [
             'mapping_types' => [

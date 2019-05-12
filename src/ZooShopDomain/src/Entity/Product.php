@@ -1,19 +1,23 @@
 <?php
 namespace ZooShopDomain\Entity;
 
+use DateTime;
 use Doctrine\ORM\Mapping as ORM;
 use ZooShopCatalog\Product\ProductDTO;
 use ZooShopDomain\Entity\Traits\EntityUuidTrait;
 use ZooShopDomain\ValueObjects\Brand\BrandVO;
 use ZooShopDomain\ValueObjects\Category\CategoryVO;
+use ZooShopDomain\ValueObjects\Description\DescriptionVO;
 use ZooShopDomain\ValueObjects\Id\IdVO;
 use ZooShopDomain\ValueObjects\OriginalTitle\OriginalTitleVO;
 use ZooShopDomain\ValueObjects\Sku\SkuVO;
+use ZooShopDomain\ValueObjects\Slug\SlugVO;
 use ZooShopDomain\ValueObjects\Title\TitleVO;
 use JsonSerializable;
 
 /**
  * @ORM\Entity
+ * @ORM\HasLifecycleCallbacks()
  * @ORM\Table(name="product")
  */
 class Product implements JsonSerializable
@@ -26,6 +30,8 @@ class Product implements JsonSerializable
     const SKU = 'sku';
     const CATEGORY = 'category';
     const BRAND = 'brand';
+    const DESCRIPTION = 'description';
+    const SLUG = 'slug';
 
     /**
      * @var TitleVO $title
@@ -56,6 +62,42 @@ class Product implements JsonSerializable
      * @ORM\Column(name="brand", type="brand", length=100, nullable=true)
      */
     private $brand;
+
+    /**
+     * @var DescriptionVO $description
+     * @ORM\Column(name="description", type="description", nullable=true)
+     */
+    private $description;
+
+    /**
+     * @var SlugVO $slug
+     * @ORM\Column(name="slug", type="slug", length=100, nullable=true)
+     */
+    private $slug;
+
+    /**
+     * @var DateTime
+     * @ORM\Column(name="created_at", type="datetime", options={"default"="CURRENT_TIMESTAMP"})
+     */
+    private $createdAt;
+
+    /**
+     * @var DateTime
+     * @ORM\Column(name="updated_at", type="datetime", options={"default"="CURRENT_TIMESTAMP"})
+     */
+    private $updatedAt;
+
+    /**
+     * @ORM\PrePersist
+     */
+    public function onPrePersist()
+    {
+        if (!$this->createdAt) {
+            $this->createdAt = new DateTime('now');
+        }
+
+        $this->updatedAt = new DateTime('now');
+    }
 
     private $metaTitle;
     private $metaDescription;
