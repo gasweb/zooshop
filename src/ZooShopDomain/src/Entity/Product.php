@@ -10,10 +10,6 @@ use ZooShopDomain\ValueObjects\Brand\BrandVO;
 use ZooShopDomain\ValueObjects\Category\CategoryVO;
 use ZooShopDomain\ValueObjects\Description\DescriptionVO;
 use ZooShopDomain\ValueObjects\Id\IdVO;
-use ZooShopDomain\ValueObjects\Meta\Description\MetaDescriptionVO;
-use ZooShopDomain\ValueObjects\Meta\Keywords\MetaKeywordsVO;
-use ZooShopDomain\ValueObjects\Meta\MetaVO;
-use ZooShopDomain\ValueObjects\Meta\Title\MetaTitleVO;
 use ZooShopDomain\ValueObjects\OriginalTitle\OriginalTitleVO;
 use ZooShopDomain\ValueObjects\Sku\SkuVO;
 use ZooShopDomain\ValueObjects\Slug\SlugVO;
@@ -161,6 +157,9 @@ class Product implements JsonSerializable
         $this->category = $valueObjects[self::CATEGORY];
         $this->brand = $valueObjects[self::BRAND];
         $this->sku = $valueObjects[self::SKU];
+        $this->description = $valueObjects[self::DESCRIPTION];
+        $this->slug = $valueObjects[self::SLUG];
+        $this->meta = $valueObjects[META::NAME];
     }
 
     /**
@@ -180,7 +179,8 @@ class Product implements JsonSerializable
             self::BRAND => $this->brand,
             self::SKU => $this->sku,
             self::DESCRIPTION => $this->description,
-            self::SLUG => $this->slug
+            self::SLUG => $this->slug,
+            META::NAME => $this->meta
         ];
     }
 
@@ -198,7 +198,10 @@ class Product implements JsonSerializable
             ->setBrand($this->brand->get())
             ->setSku($this->sku->get())
             ->setDescription($this->description->get())
-            ->setSlug($this->slug->get());
+            ->setSlug($this->slug->get())
+            ->setMetaTitle($this->meta->metaTitle())
+            ->setMetaDescription($this->meta->metaDescription())
+            ->setMetaKeywords($this->meta->metaKeywords());
         return $productDTO;
     }
 }
