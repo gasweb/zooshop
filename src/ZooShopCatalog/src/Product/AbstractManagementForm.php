@@ -3,14 +3,12 @@ declare(strict_types = 1);
 
 namespace ZooShopCatalog\Product;
 
-use phpDocumentor\Reflection\DocBlock\Tags\See;
 use Zend\Form\Element\Csrf;
 use Zend\Form\Element\Select;
 use Zend\Form\Element\Submit;
 use Zend\Form\Element\Text;
 use Zend\Form\Form;
 use Zend\Hydrator\ClassMethodsHydrator;
-use ZooShopApp\ConfigProvider;
 use ZooShopCatalog\Product\Create\CreateFormInputFilter;
 use ZooShopDomain\Entity\Product;
 use ZooShopDomain\ValueObjects\Brand\BrandVO;
@@ -24,42 +22,49 @@ class AbstractManagementForm extends Form
 
     const TITLE = [
         'name' => Product::TITLE,
+        'id' => Product::TITLE,
         'label' => 'CREATE_PRODUCT_FORM_TITLE_LABEL',
         'placeholder' => 'CREATE_PRODUCT_FORM_TITLE_PLACEHOLDER',
     ];
 
     const ORIGINAL_TITLE = [
         'name' => Product::ORIGINAL_TITLE,
+        'id' => Product::ORIGINAL_TITLE,
         'label' => 'CREATE_PRODUCT_FORM_ORIGINAL_TITLE_LABEL',
         'placeholder' => 'CREATE_PRODUCT_FORM_ORIGINAL_TITLE_PLACEHOLDER',
     ];
 
     const CATEGORY = [
         'name' => Product::CATEGORY,
+        'id' => Product::CATEGORY,
         'label' => 'CREATE_PRODUCT_FORM_CATEGORY_LABEL',
         'default' => 'CREATE_PRODUCT_FORM_CATEGORY_DEFAULT',
     ];
 
     const BRAND = [
         'name' => Product::BRAND,
+        'id' => Product::BRAND,
         'label' => 'CREATE_PRODUCT_FORM_BRAND_LABEL',
         'default' => 'CREATE_PRODUCT_FORM_BRAND_DEFAULT',
     ];
 
     const SKU = [
         'name' => Product::SKU,
+        'id' => Product::SKU,
         'label' => 'CREATE_PRODUCT_FORM_SKU_LABEL',
         'placeholder' => 'CREATE_PRODUCT_FORM_SKU_PLACEHOLDER',
     ];
 
     const DESCRIPTION = [
         'name' => Product::DESCRIPTION,
+        'id' => Product::DESCRIPTION,
         'label' => 'CREATE_PRODUCT_FORM_DESCRIPTION_LABEL',
         'placeholder' => 'CREATE_PRODUCT_FORM_DESCRIPTION_PLACEHOLDER',
     ];
 
     const SLUG = [
         'name' => Product::SLUG,
+        'id' => Product::SLUG,
         'label' => 'CREATE_PRODUCT_FORM_SLUG_LABEL',
         'placeholder' => 'CREATE_PRODUCT_FORM_SLUG_PLACEHOLDER',
     ];
@@ -103,7 +108,6 @@ class AbstractManagementForm extends Form
             'name' => self::TITLE['name'],
             'type' => Text::class,
             'options' => [
-                'property' => Product::TITLE,
                 'label' => self::TITLE['label'],
                 'label_attributes' => [
                     'class' => 'col-sm-4 col-form-label'
@@ -113,7 +117,7 @@ class AbstractManagementForm extends Form
                 'placeholder' => self::TITLE['placeholder'],
                 'autocomplete' => 'off',
                 'class' => 'form-control',
-                'id' => Product::TITLE
+                'id' => self::TITLE['id']
             ],
         ]);
     }
@@ -124,7 +128,6 @@ class AbstractManagementForm extends Form
             'name' => self::ORIGINAL_TITLE['name'],
             'type' => Text::class,
             'options' => [
-                'property' => Product::ORIGINAL_TITLE,
                 'label' => self::ORIGINAL_TITLE['label'],
                 'label_attributes' => [
                     'class' => 'col-sm-4 col-form-label'
@@ -134,7 +137,7 @@ class AbstractManagementForm extends Form
                 'placeholder' => self::ORIGINAL_TITLE['placeholder'],
                 'autocomplete' => 'off',
                 'class' => 'form-control',
-                'id' => Product::ORIGINAL_TITLE
+                'id' => self::ORIGINAL_TITLE['id']
             ],
         ]);
     }
@@ -145,7 +148,6 @@ class AbstractManagementForm extends Form
             'name' => self::SKU['name'],
             'type' => Text::class,
             'options' => [
-                'property' => Product::SKU,
                 'label' => self::SKU['label'],
                 'label_attributes' => [
                     'class' => 'col-sm-4 col-form-label'
@@ -155,7 +157,7 @@ class AbstractManagementForm extends Form
                 'placeholder' => self::SKU['placeholder'],
                 'autocomplete' => 'off',
                 'class' => 'form-control',
-                'id' => Product::SKU
+                'id' => self::SKU['id']
             ],
         ]);
     }
@@ -166,7 +168,6 @@ class AbstractManagementForm extends Form
             'name' => self::DESCRIPTION['name'],
             'type' => Text::class,
             'options' => [
-                'property' => Product::SLUG,
                 'label' => self::DESCRIPTION['label'],
                 'label_attributes' => [
                     'class' => 'col-sm-4 col-form-label'
@@ -176,7 +177,7 @@ class AbstractManagementForm extends Form
                 'placeholder' => self::DESCRIPTION['placeholder'],
                 'autocomplete' => 'off',
                 'class' => 'form-control',
-                'id' => Product::DESCRIPTION
+                'id' => self::DESCRIPTION['id']
             ],
         ]);
     }
@@ -187,7 +188,6 @@ class AbstractManagementForm extends Form
             'name' => self::SLUG['name'],
             'type' => Text::class,
             'options' => [
-                'property' => Product::SLUG,
                 'label' => self::SLUG['label'],
                 'label_attributes' => [
                     'class' => 'col-sm-4 col-form-label'
@@ -197,7 +197,7 @@ class AbstractManagementForm extends Form
                 'placeholder' => self::SLUG['placeholder'],
                 'autocomplete' => 'off',
                 'class' => 'form-control',
-                'id' => Product::SLUG
+                'id' => self::SLUG['id']
             ],
         ]);
     }
@@ -209,7 +209,6 @@ class AbstractManagementForm extends Form
                 'name' => self::CATEGORY['name'],
                 'type' => Select::class,
                 'options' => [
-                    'property' => Product::CATEGORY,
                     'label' => self::CATEGORY['label'],
                     'label_attributes' => [
                         'class' => 'col-sm-4 col-form-label'
@@ -231,7 +230,6 @@ class AbstractManagementForm extends Form
                 'name' => self::BRAND['name'],
                 'type' => Select::class,
                 'options' => [
-                    'property' => Product::BRAND,
                     'label' => self::BRAND['label'],
                     'label_attributes' => [
                         'class' => 'col-sm-4 col-form-label'
