@@ -18,6 +18,12 @@ $editForm = $this->editForm;
 <?=$this->partial('zoo-shop-app::partial/form/input-text', [
     'formElement' => $editForm->getSku()
 ]) ?>
+<?=$this->partial('zoo-shop-app::partial/form/input-text', [
+    'formElement' => $editForm->getSlug()
+]) ?>
+<?=$this->partial('zoo-shop-app::partial/form/textarea', [
+    'formElement' => $editForm->getDescription()
+]) ?>
 <?=$this->formInput($editForm->getCsrf()) ?>
 <?=$this->formButton($editForm->getSubmit(), $editForm->getSubmitValue()) ?>
 <?=$this->form()->closeTag(); ?>

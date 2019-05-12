@@ -52,6 +52,18 @@ class AbstractManagementForm extends Form
         'placeholder' => 'CREATE_PRODUCT_FORM_SKU_PLACEHOLDER',
     ];
 
+    const DESCRIPTION = [
+        'name' => Product::DESCRIPTION,
+        'label' => 'CREATE_PRODUCT_FORM_DESCRIPTION_LABEL',
+        'placeholder' => 'CREATE_PRODUCT_FORM_DESCRIPTION_PLACEHOLDER',
+    ];
+
+    const SLUG = [
+        'name' => Product::SLUG,
+        'label' => 'CREATE_PRODUCT_FORM_SLUG_LABEL',
+        'placeholder' => 'CREATE_PRODUCT_FORM_SLUG_PLACEHOLDER',
+    ];
+
     const CSRF = [
         'name' => 'csrf'
     ];
@@ -79,6 +91,8 @@ class AbstractManagementForm extends Form
         $this->addSku();
         $this->addCategories();
         $this->addBrands();
+        $this->addSlug();
+        $this->addDescription();
         $this->addCsrf();
         $this->addSubmit();
     }
@@ -142,6 +156,48 @@ class AbstractManagementForm extends Form
                 'autocomplete' => 'off',
                 'class' => 'form-control',
                 'id' => Product::SKU
+            ],
+        ]);
+    }
+
+    protected function addDescription() : void
+    {
+        $this->add([
+            'name' => self::DESCRIPTION['name'],
+            'type' => Text::class,
+            'options' => [
+                'property' => Product::SLUG,
+                'label' => self::DESCRIPTION['label'],
+                'label_attributes' => [
+                    'class' => 'col-sm-4 col-form-label'
+                ],
+            ],
+            'attributes' => [
+                'placeholder' => self::DESCRIPTION['placeholder'],
+                'autocomplete' => 'off',
+                'class' => 'form-control',
+                'id' => Product::DESCRIPTION
+            ],
+        ]);
+    }
+
+    protected function addSlug() : void
+    {
+        $this->add([
+            'name' => self::SLUG['name'],
+            'type' => Text::class,
+            'options' => [
+                'property' => Product::SLUG,
+                'label' => self::SLUG['label'],
+                'label_attributes' => [
+                    'class' => 'col-sm-4 col-form-label'
+                ],
+            ],
+            'attributes' => [
+                'placeholder' => self::SLUG['placeholder'],
+                'autocomplete' => 'off',
+                'class' => 'form-control',
+                'id' => Product::SLUG
             ],
         ]);
     }
@@ -234,6 +290,16 @@ class AbstractManagementForm extends Form
     public function getBrands()
     {
         return $this->get(self::BRAND['name']);
+    }
+
+    public function getDescription()
+    {
+        return $this->get(self::DESCRIPTION['name']);
+    }
+
+    public function getSlug()
+    {
+        return $this->get(self::SLUG['name']);
     }
 
     public function getSubmit()
