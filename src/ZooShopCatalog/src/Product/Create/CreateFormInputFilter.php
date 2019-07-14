@@ -9,12 +9,12 @@ use Zend\InputFilter\InputFilter;
 use Zend\Validator\NotEmpty;
 use ZooShopCatalog\Product\Create\CreateForm;
 
-class CreateFormInputFilter extends InputFilter
+final class CreateFormInputFilter extends InputFilter
 {
-    const TITLE_ERRORS = [
+    private const TITLE_ERRORS = [
         NotEmpty::IS_EMPTY => 'PRODUCT_TITLE_IS_EMPTY'
     ];
-    const CATEGORY_ERRORS = [
+    private const CATEGORY_ERRORS = [
         NotEmpty::IS_EMPTY => 'CATEGORY_IS_EMPTY'
     ];
 

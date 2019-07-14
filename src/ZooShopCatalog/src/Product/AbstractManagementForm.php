@@ -9,7 +9,7 @@ use Zend\Form\Element\Submit;
 use Zend\Form\Element\Text;
 use Zend\Form\Element\Textarea;
 use Zend\Form\Form;
-use Zend\Hydrator\ClassMethodsHydrator;
+use Zend\Hydrator\ClassMethods;
 use ZooShopCatalog\Product\Create\CreateFormInputFilter;
 use ZooShopDomain\Entity\Embeddable\Meta;
 use ZooShopDomain\Entity\Product;
@@ -107,7 +107,7 @@ class AbstractManagementForm extends Form
     public function __construct($name = null, $options = [])
     {
         parent::__construct($name, $options);
-        $this->setHydrator(new ClassMethodsHydrator());
+        $this->setHydrator(new ClassMethods());
         $this->addFormItems();
         $this->setInputFilter(new CreateFormInputFilter());
     }

@@ -6,7 +6,7 @@ namespace ZooShopCatalog\Product\Create;
 use ZooShopApp\ConfigProvider;
 use ZooShopCatalog\Product\AbstractManagementForm;
 
-class CreateForm extends AbstractManagementForm
+final class CreateForm extends AbstractManagementForm
 {
     protected $attributes = [
         'method' => 'POST',
